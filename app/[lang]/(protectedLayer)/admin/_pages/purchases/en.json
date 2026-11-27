@@ -1,0 +1,15 @@
+{
+  "title": "Purchases",
+  "description": "The starters this project got, their versions and authors.",
+  "body": [
+    {
+      "kind": "text-p",
+      "text": "Only what the core confirmed as received is here. A bought starter can be installed again with no new payment.",
+      "bid": "i0nws"
+    },
+    {
+      "kind": "widget-dynamic-market-purchases",
+      "bid": "hll7g"
+    }
+  ]
+}

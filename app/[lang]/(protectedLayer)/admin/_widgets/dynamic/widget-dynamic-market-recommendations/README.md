@@ -1,0 +1,10 @@
+# widget-dynamic-market-recommendations
+
+The island of the page `/<lang>/admin/recommendations` (step 3): the starters grouped by the task that asked for them; keep · delete · to the cart.
+
+- **Where it stands:** the last item of the sequence in `admin/_pages/recommendations/<lang>.json`; listed in `admin/_widgets/index.tsx`.
+- **Words:** `words.i18n.ts`, chosen by the server (`index.tsx`) and passed as a prop.
+- **Shapes and formatting:** `admin/_libs/market.ts`.
+- **Data and actions:** not wired yet (substep 3-1 is the design pass) — the island shows its own skeleton; the main pass connects it
+  through server-side calls of `lib/market` that check the architect's session (the browser never holds the node key).
+- **Files:** `index.tsx` (server entry) · `view.client.tsx` (the island, its skeleton, empty and unavailable states).

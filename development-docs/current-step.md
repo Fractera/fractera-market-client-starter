@@ -1,16 +1,19 @@
 # Current step
 
 **Active step:** 3 — the pages of recommendations and the cart (`development-docs/steps-new/3-the-pages-of-recommendations-and-cart.md`).
-State: building; substep 3-1 (design pass) next.
+State: building; substep 3-1 (design pass) done 2026-11-27 — three page folders in admin `_pages/` (recommendations, cart, purchases)
+and three islands `widget-dynamic-market-*` with their skeleton, empty and unavailable states; the data and the actions are not wired yet.
+Substep 3-2 (main pass) next.
 
 Serves: S-03, S-04, S-05, S-06, S-07, R-01, R-02, R-03
 Stage: 1
 
-**Last change:** stage 0 closed in the quiz on the core main agent's live checks; the step 3 plan moved from the intake to `steps-new/`
-and widened by the «yes» (the core's doors /api/node/market/*, the free path, the stub replaced).
+**Last change:** substep 3-1 — the pages and their islands; full `npm run prebuild` RC=0; `npm run eyes` at 1440 and 390 px on a
+temporary `next dev` (port 24797, stopped after): the three pages answer 200, the skeletons draw, no console errors. The live site shows
+the islands only after a build (the step closes with one build, substep 7).
 
-**Next action:** `npm run pass -- design` → substep 3-1: three page skeletons in the admin branch, one widget each, shadcn parts,
-`data-block` on every container, `npm run eyes` phone and desktop; then report 3-1 to the core (`npm run tell-core`, then done).
+**Next action:** `npm run pass -- main` → substep 3-2: the recommendations wired — rows by task from `lib/market`, keep · delete · to the
+cart through server-side calls that check the architect's session.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 

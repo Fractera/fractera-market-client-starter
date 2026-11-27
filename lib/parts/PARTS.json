@@ -470,6 +470,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/row.client.tsx",
         "app/[lang]/(publicLayer)/_widgets/static/widget-static-native-landing/index.tsx",
         "components/ai-elements/chain-of-thought.tsx",
@@ -507,6 +508,9 @@
         "app/[lang]/(protectedLayer)/admin/_components/design-editors/design-shape.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_components/design-editors/design-type.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_components/design-editors/preset-field.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-cart/view.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-purchases/view.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/combo-field.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/config-editor.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/languages-editor.client.tsx",
@@ -768,6 +772,9 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-cart/view.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-purchases/view.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/index.client.tsx"
       ]
     },
@@ -1090,6 +1097,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-cart/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/config-editor.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/languages-editor.client.tsx",
         "components/shell/shell-account.client.tsx"
@@ -1143,6 +1151,9 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-cart/view.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-purchases/view.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/skeleton.tsx"
       ]
     },
@@ -1332,6 +1343,7 @@
       },
       "usedBy": [
         "app/[lang]/(protectedLayer)/admin/_components/design-editors/design-brief.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/advice-note.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/config-editor.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/field-row.client.tsx",

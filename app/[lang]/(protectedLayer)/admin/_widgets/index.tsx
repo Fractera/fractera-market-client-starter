@@ -7,6 +7,9 @@ import { Widget as DesignOverview } from './dynamic/widget-dynamic-design-overvi
 import { Widget as DesignColors } from './dynamic/widget-dynamic-design-colors'
 import { Widget as DesignType } from './dynamic/widget-dynamic-design-type'
 import { Widget as DesignShape } from './dynamic/widget-dynamic-design-shape'
+import { Widget as MarketRecommendations } from './dynamic/widget-dynamic-market-recommendations'
+import { Widget as MarketCart } from './dynamic/widget-dynamic-market-cart'
+import { Widget as MarketPurchases } from './dynamic/widget-dynamic-market-purchases'
 
 // ВИДЖЕТЫ ЭТОЙ ВЕТКИ (владелец 2026-10-07: «удалили маршрут — проект чистый»). Страница ветки называет виджет в `meta.json` →
 // `"widget"`; ищется он только здесь. Удалили ветку — список ушёл вместе с ней.
@@ -21,4 +24,8 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-dynamic-design-shape': (lang) => <DesignShape lang={lang} />,
   // Свои настройки элемента — копия редактора CONFIG (`_pages/site-settings`).
   'widget-dynamic-site-settings': (lang) => <SiteSettings lang={lang} />,
+  // Step 3: the marketplace client's pages — recommendations by task, the cart, the purchases (architect only).
+  'widget-dynamic-market-recommendations': (lang) => <MarketRecommendations lang={lang} />,
+  'widget-dynamic-market-cart': (lang) => <MarketCart lang={lang} />,
+  'widget-dynamic-market-purchases': (lang) => <MarketPurchases lang={lang} />,
 }

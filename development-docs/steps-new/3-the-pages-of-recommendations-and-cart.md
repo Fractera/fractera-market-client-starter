@@ -23,6 +23,8 @@ dynamic islands with a skeleton.
 **Substeps:**
 1. Pass: design — three page skeletons in the admin branch: «Рекомендации» (grouped by task), «Корзина», «Покупки»; one dynamic widget
    per page from shadcn parts, every container with `data-block`. Check: `npm run eyes` screenshots of the three pages, phone and desktop.
+   ✓ Done 2026-11-27: pages `admin/_pages/{recommendations,cart,purchases}`, islands `widget-dynamic-market-*`, shapes in
+   `admin/_libs/market.ts`; prebuild RC=0; eyes at 1440 and 390 px on a temporary dev server — 200, skeletons drawn, no console errors.
 2. Pass: main — «Рекомендации»: rows by task with every E-01 field (element, starter, source, simulated mark, page link, price,
    usefulness, why, status, time); buttons «Оставить» · «Удалить» · «В корзину» through server actions. Check: delete → the row leaves;
    the next search on that task does not bring it back.

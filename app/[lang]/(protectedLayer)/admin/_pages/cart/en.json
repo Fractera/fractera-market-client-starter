@@ -1,0 +1,15 @@
+{
+  "title": "Cart",
+  "description": "The starters you decided to get, one copy of each.",
+  "body": [
+    {
+      "kind": "text-p",
+      "text": "Each starter lies here in one copy. The core of the project gets and installs it: a starter appears in «Purchases» only after the core confirms it.",
+      "bid": "lac1n"
+    },
+    {
+      "kind": "widget-dynamic-market-cart",
+      "bid": "dalfb"
+    }
+  ]
+}

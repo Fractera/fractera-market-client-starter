@@ -1,0 +1,15 @@
+{
+  "title": "Recommendations",
+  "description": "Starters of the Fractera store picked for the tasks of this project’s elements, grouped by task.",
+  "body": [
+    {
+      "kind": "text-p",
+      "text": "An element of the project names a task, the store answers with starters. Each decision is yours: keep, delete or put in the cart. A deleted starter is never offered for the same task again.",
+      "bid": "m01q6"
+    },
+    {
+      "kind": "widget-dynamic-market-recommendations",
+      "bid": "h1oqw"
+    }
+  ]
+}
