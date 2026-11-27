@@ -1,7 +1,7 @@
 "use client"
 // @local — the island «Купленные» (steps 3-1, 4-3, 4-4): buying and installing are not the same (the architect, Telegram 1651). One
 // table on the node's `table-tools` (the row search, the filters «Не установленные» and «От Fractera», pages); each row: «Куплен», the
-// install state (not installed · installing · installed as <element> at its address · failed with the reason) and one button —
+// install state (not installed · installing · installed as <element> at its address · failed, in this page's own words) and one button —
 // «Установить» while it is not installed, «Установить ещё раз» only once it is. A click on a name opens the starter's card beside the
 // table (`table-detail`) — the same layout as the recommendations and the cart (Telegram 1655). Nothing is shown as bought before the
 // core says so (R-04). The data and the action come from its island (island.client.tsx).
@@ -150,9 +150,8 @@ function InstallState({ words, p }: { words: PurchasesWords; p: Purchase }) {
           )}
         </span>
       )}
-      {!installed && p.install?.reason && (
-        <span className="text-xs text-muted-foreground [overflow-wrap:anywhere]">{p.install.reason}</span>
-      )}
+      {/* The core's own reason is English and technical — never shown raw; the person reads this page's words (the core, 2026-11-27). */}
+      {!installed && words.hint[st] && <span className="text-xs text-pretty text-muted-foreground">{words.hint[st]}</span>}
     </div>
   )
 }

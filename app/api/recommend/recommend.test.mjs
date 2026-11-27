@@ -77,6 +77,13 @@ await reinstall({ starter: 'fractera-test-post-starter' }, node)
 fakeCore.install = async (id, slug, again) => { calls.push(['install', id, slug, again]); return { ok: true, state: 'running' } }
 await reinstall({ starter: 'fractera-test-post-starter' }, node)
 check('after a failed install the button sends a first install (no «again»)', calls.at(-1).join() === 'install,ord-000000000000000000000001,fractera-test-post-starter,false', calls.at(-1))
+fakeCore.install = async () => ({ ok: false, reason: 'this order is already installed here: mpso1' })
+await reinstall({ starter: 'fractera-test-post-starter' }, node) // stored as «failed» with the core's English reason
+fakeCore.installState = async (id, slug) => { calls.push(['state', id, slug]); return { ok: true, state: 'installed', element: 'mpso1' } }
+const pu3 = await purchases({}, node)
+const was = pu3.body.purchases.find((x) => x.starter === 'fractera-test-post-starter')
+check('a failed purchase is asked again on read and turns «installed» with its element', was.install.state === 'installed' && was.install.element?.id === 'mpso1' && was.install.reason === null && calls.at(-1).join() === 'state,ord-000000000000000000000001,fractera-test-post-starter', was)
+fakeCore.install = async (id, slug, again) => { calls.push(['install', id, slug, again]); return { ok: true, state: 'running' } }
 const empty = await checkout({}, node)
 check('an empty cart is refused', empty.status === 400, empty)
 const paidRepo = memoryRepo()

@@ -27,7 +27,7 @@ export function PurchasesIsland({ lang, words }: { lang: string; words: Purchase
     const a = await marketCall(lang, { op: "reinstall", starter: p.starter })
     setBusy(false)
     if (a.ok) toast.success(words.installStarted)
-    else toast.error(`${words.failed} ${a.reason}`)
+    else toast.error(words.notStarted) // the door's reason is technical — the person reads this page's words
     await load()
   }
 
