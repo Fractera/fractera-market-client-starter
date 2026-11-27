@@ -8,7 +8,7 @@ Stage: 1
 
 **Last change:** step 3 closed (f7637b1); step 4 planned.
 
-**Now (2026-11-27 ~21:10):** 4-2 proven on the deployed 4-1 (2 live rows; the tie-swap of «Цена ↓» fixed). 4-3 coded: the drawer's three entries (`lib/menu/account-links.ts`), «Покупки» → «Купленные» with «Куплен» + the install state + «Установить» / «Установить ещё раз», the install keeps {element, address}, the pager on a phone (table-tools v1.1.1). prebuild RC=0, the market test OK. Page titles live already (data); the code waits for the core's build.
+**Now (2026-11-27 ~21:10):** 4-2 proven on the deployed 4-1 (2 live rows; the tie-swap of «Цена ↓» fixed). 4-3 coded (0402b19): the drawer's three entries (`lib/menu/account-links.ts`), «Покупки» → «Купленные» with «Куплен» + the install state + «Установить» / «Установить ещё раз», the install keeps {element, address}, the pager on a phone (table-tools v1.1.1). prebuild RC=0, the market test OK. Page titles live already (data); the code waits for the core's build.
 
 **Next action:** the core builds → eyes 1440/390 on /ru/admin/purchases, /ru/admin/recommendations and the open drawer → close step 4.
 Defect to the core: GET install for ord-9adb22acd9ead131be080c96 answers «failed: this order is already installed here: mpso1» — it should answer `installed` with the element (and its address), or «Купленные» keeps offering «Установить» for an installed starter.
