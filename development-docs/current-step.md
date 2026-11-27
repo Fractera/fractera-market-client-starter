@@ -1,14 +1,14 @@
 # Current step
 
 **Active step:** 4 — «Рекомендации» as a table with search, filters, sort and pages (`development-docs/steps-new/4-the-recommendations-as-a-table.md`).
-State: planned 2026-11-27; the stage-0 simulated rows deleted (data). Substep 4-1 is the design pass.
+State: 4-1 (design) coded 2026-11-27 — `table-tools` taken (core v1.0.1) and made own (v1.1.0: shadcn controls, caller's search, narrowing filters, sorts); the island rebuilt on it; prebuild RC=0; one live search added a row («Тестовый пост — стартер», Fractera, free). Not yet seen: the new look needs a build (the core deploys); eyes at 1440/390 and the 4-2 proofs ride on that same build.
 
 Serves: S-03, S-04
 Stage: 1
 
 **Last change:** step 3 closed (f7637b1); step 4 planned.
 
-**Next action:** `npm run pass -- design` → substep 4-1: take `table-tools`, rebuild the recommendations island on it.
+**Next action:** the core builds/deploys the 4-1 commit → `npm run eyes` at 1440 and 390 on /ru/admin/recommendations → 4-2 (main pass): each filter and sort proven on the live rows.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 

@@ -1,6 +1,7 @@
 "use client"
-// @local — the live part of «Рекомендации» (step 3-2): the architect's own search, the rows from the branch door, the three decisions.
+// @local — the live part of «Рекомендации» (step 3-2, table 4-1): the architect's store search in the table's top card, the rows from the branch door, the three decisions.
 // Every act goes to the door and the list is read again from it — the page never shows a state the server did not keep.
+import { Search } from "lucide-react"
 import { useCallback, useEffect, useState, type FormEvent } from "react"
 import { toast } from "sonner"
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group"
@@ -47,27 +48,33 @@ export function RecommendationsIsland({ lang, words }: { lang: string; words: Re
     await load()
   }
 
+  const search = (
+    <form data-block="sx7qa" onSubmit={onSearch} role="search" aria-label={words.searchLabel}>
+      <InputGroup data-block="sv2mc" className="h-10">
+        <InputGroupAddon data-block="rk4sa">
+          <Search aria-hidden />
+        </InputGroupAddon>
+        <InputGroupInput
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          maxLength={500}
+          placeholder={words.searchPlaceholder}
+          aria-label={words.searchLabel}
+          disabled={busy}
+        />
+        <InputGroupAddon data-block="pa8wd" align="inline-end">
+          <InputGroupButton type="submit" variant="default" size="sm" disabled={busy || !task.trim()}>
+            {busy && <Spinner data-icon="inline-start" />}
+            {busy ? words.searching : words.searchButton}
+          </InputGroupButton>
+        </InputGroupAddon>
+      </InputGroup>
+    </form>
+  )
+
   return (
-    <div data-block="rk3fz" className="flex flex-col gap-8">
-      <form data-block="sx7qa" onSubmit={onSearch} className="flex flex-col gap-2" aria-label={words.searchLabel}>
-        <InputGroup data-block="sv2mc" className="h-11">
-          <InputGroupInput
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            maxLength={500}
-            placeholder={words.searchPlaceholder}
-            aria-label={words.searchLabel}
-            disabled={busy}
-          />
-          <InputGroupAddon data-block="pa8wd" align="inline-end">
-            <InputGroupButton type="submit" variant="default" size="sm" disabled={busy || !task.trim()}>
-              {busy && <Spinner data-icon="inline-start" />}
-              {busy ? words.searching : words.searchButton}
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
-      </form>
-      <RecommendationsView lang={lang} words={words} state={state} onChoice={busy ? undefined : onChoice} />
+    <div data-block="rk3fz">
+      <RecommendationsView lang={lang} words={words} search={search} state={state} onChoice={busy ? undefined : onChoice} />
     </div>
   )
 }

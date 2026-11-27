@@ -24,6 +24,12 @@ export type RecommendationsWords = {
   found: string
   nothingNew: string
   failed: string
+  columns: { n: string; starter: string; author: string; price: string; task: string; state: string; actions: string }
+  onlyFree: string
+  onlyFractera: string
+  priceUp: string
+  priceDown: string
+  noAuthor: string
 }
 
 const en: RecommendationsWords = {
@@ -51,6 +57,12 @@ const en: RecommendationsWords = {
   found: "New starters in the list:",
   nothingNew: "The store has nothing new for this task.",
   failed: "It did not work:",
+  columns: { n: "No.", starter: "Starter", author: "Author", price: "Price", task: "Task", state: "State", actions: "Actions" },
+  onlyFree: "Free",
+  onlyFractera: "By Fractera",
+  priceUp: "Price ↑",
+  priceDown: "Price ↓",
+  noAuthor: "—",
 }
 
 const ru: RecommendationsWords = {
@@ -78,6 +90,12 @@ const ru: RecommendationsWords = {
   found: "Новых стартеров в списке:",
   nothingNew: "У магазина нет ничего нового под эту задачу.",
   failed: "Не получилось:",
+  columns: { n: "№", starter: "Стартер", author: "Автор", price: "Цена", task: "Задача", state: "Состояние", actions: "Действия" },
+  onlyFree: "Бесплатные",
+  onlyFractera: "От Fractera",
+  priceUp: "Цена ↑",
+  priceDown: "Цена ↓",
+  noAuthor: "—",
 }
 
 export const recommendationsWords = (lang: string): RecommendationsWords => (lang === "ru" ? ru : en)

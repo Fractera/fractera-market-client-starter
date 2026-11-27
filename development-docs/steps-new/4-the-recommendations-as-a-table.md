@@ -22,7 +22,7 @@ Remove the stage-0 «симуляция» rows (done 2026-11-27 as data: two row
 (no new door); shadcn and the taken part only; every container with `data-block`.
 
 **Substeps:**
-1. Pass: design — `npm run tool:take -- table-tools`; the island of «Рекомендации» rebuilt on it: the store search in the top card,
+1. Pass: design — [coded 2026-11-27; eyes wait for the build] `npm run tool:take -- table-tools` (then `tool:own`: the taken body had no outside search, no narrowing filter, no sort, and raw controls); the island of «Рекомендации» rebuilt on it: the store search in the top card,
    toggles «Бесплатные», «От Fractera», the price sort ↑ / ↓, «Сбросить отбор»; columns № · starter (link) · author · price · task ·
    state · actions; rows per page and pages. Check: `npm run eyes` at 1440 and 390 px with rows (one live search first, since the list
    is empty after the clean-up) — no overflow at 390; full `npm run prebuild` RC=0.
