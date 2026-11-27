@@ -6,3 +6,4 @@ precaution: the template hands every new element this table empty.
 
 | Symptom | Cause | Cure |
 |---|---|---|
+- 2026-11-27 · A door's shape learned by probing a purchase door made a real order (ord-be889…). Ask the core for a paying or ordering door's contract before calling it with valid input.
