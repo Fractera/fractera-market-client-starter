@@ -27,9 +27,12 @@
     "wakeOnCall": false
   },
   "development": {
-    "steps": [],
-    "current": null,
-    "state": "done",
-    "at": "2026-11-27T20:11:56.865Z"
+    "steps": [
+      "3"
+    ],
+    "current": "3",
+    "state": "building",
+    "next": "deploy of ec57435, then install the test post starter live once",
+    "at": "2026-11-27T20:14:59.051Z"
   }
 }
