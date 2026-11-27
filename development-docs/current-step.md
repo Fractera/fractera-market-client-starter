@@ -1,7 +1,7 @@
 # Current step
 
 **Active step:** 4 — «Рекомендации» as a table with search, filters, sort and pages (`development-docs/steps-new/4-the-recommendations-as-a-table.md`).
-State: 4-1 (design) coded 2026-11-27 — `table-tools` taken (core v1.0.1) and made own (v1.1.0: shadcn controls, caller's search, narrowing filters, sorts); the island rebuilt on it; prebuild RC=0; one live search added a row («Тестовый пост — стартер», Fractera, free). Not yet seen: the new look needs a build (the core deploys); eyes at 1440/390 and the 4-2 proofs ride on that same build.
+State: 4-1 (design) coded 2026-11-27 — `table-tools` taken (core v1.0.1) and made own (v1.1.0: shadcn controls, caller's search, narrowing filters, sorts); the island rebuilt on it (f59fd3d); prebuild RC=0; one live search added a row («Тестовый пост — стартер», Fractera, free). Not yet seen: the new look needs a build (the core deploys); eyes at 1440/390 and the 4-2 proofs ride on that same build.
 
 Serves: S-03, S-04
 Stage: 1
