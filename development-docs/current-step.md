@@ -14,7 +14,8 @@ Stage: 1
 
 **Then (21:25):** the core deployed 4-4 (e9c2a1d) and looked; fixes in one more commit (f5e96d8): the card's clipped edge, version and report in the card, «Покупки» → «Купленные» in the cart's text. «Что умеет» stays English (the store has no Russian description).
 
-**Intake:** `pre-steps/27-11-2026_21-08-00.md` — the «f2f · Web2» tab on «Как это работает»: that page is the core's, and the text is the texts pass; named back to the core twice (21:20, 21:30): the page is the core's; waiting for the core's word on where the tab lives.
+**Intake:** empty. `27-11-2026_21-08-00.md` (the «f2f · Web2» tab) moved to `handled/` — the core writes that tab and its text on its own page.
+**Waiting:** the core deploys f5e96d8 and looks; then eyes on the card (1440, 390) and close step 4.
 
 **Next action (after 4-4):** the core builds → eyes 1440/390 on /ru/admin/purchases, /ru/admin/recommendations and the open drawer → close step 4.
 Defect to the core: GET install for ord-9adb22acd9ead131be080c96 answers «failed: this order is already installed here: mpso1» — it should answer `installed` with the element (and its address), or «Купленные» keeps offering «Установить» for an installed starter.
