@@ -8,7 +8,7 @@ Stage: 1
 
 **Last change:** step 5 closed (`steps-done/5.md`): live 401 / 200, eyes on `?open=` and `?element=`.
 
-**Now:** 6-1, 6-2 coded; prebuild RC=0; market test and summary test OK. The core's live orders read (2 orders, both paid): after the deploy the reconcile adds the probe order ord-be889e7cd713d1165e6e3d20 (image starter, by «build») to «Купленные» — paid in the core, missing here (the old backlog line).
+**Now:** 6-1, 6-2 coded (65bc639); prebuild RC=0; market test and summary test OK. The core's live orders read (2 orders, both paid): after the deploy the reconcile adds the probe order ord-be889e7cd713d1165e6e3d20 (image starter, by «build») to «Купленные» — paid in the core, missing here (the old backlog line).
 
 **Next action:** the core deploys → eyes on the cart (consent, «Получить») at 1440 / 390; the core names the priced test starter → the live paid path (6-3).
 
