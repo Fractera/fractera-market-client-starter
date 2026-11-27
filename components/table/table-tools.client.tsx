@@ -225,8 +225,8 @@ export function TableTools({
           </ButtonGroup>
         </div>
 
-        <Pagination className="mx-0 w-auto">
-          <PaginationContent data-table-pager={`${current}/${pages}`}>
+        <Pagination className="mx-0 w-full sm:w-auto">
+          <PaginationContent className="w-full justify-between sm:w-auto sm:justify-start" data-table-pager={`${current}/${pages}`}>
             <PaginationItem>
               <Button size="sm" variant="outline" aria-label={words.first} disabled={atFirst} onClick={() => setPage(1)}>
                 ««
@@ -238,7 +238,7 @@ export function TableTools({
               </Button>
             </PaginationItem>
             <PaginationItem>
-              <Small data-block="a9cpi" className="px-2 tabular-nums text-muted-foreground">
+              <Small data-block="a9cpi" className="whitespace-nowrap px-2 tabular-nums text-muted-foreground">
                 {words.page.replace("{n}", String(current)).replace("{of}", String(pages))}
               </Small>
             </PaginationItem>

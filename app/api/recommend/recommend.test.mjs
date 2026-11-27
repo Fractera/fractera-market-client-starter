@@ -14,7 +14,7 @@ const fakeCore = {
   purchase: async (slugs) => { calls.push(['purchase', slugs]); return { ok: true, state: 'paid', order: 'ord-000000000000000000000001', items: slugs.map((s) => ({ slug: s, name: s, tag: 'v0.1.0' })) } },
   order: async (id) => { calls.push(['order', id]); return { ok: true, order: id, paid: true, items: [{ slug: 'fractera-test-post-starter', name: 'Тестовый пост', tag: 'v0.1.0' }] } },
   install: async (id, slug, again) => { calls.push(['install', id, slug, again]); return { ok: true, state: 'running' } },
-  installState: async (id, slug) => { calls.push(['state', id, slug]); return { ok: true, state: 'installed', element: 'test-post' } },
+  installState: async (id, slug) => { calls.push(['state', id, slug]); return { ok: true, state: 'installed', element: { id: 'test-post', address: 'https://test-post.example.org' } } },
 }
 use({ repo: memoryRepo(), search: async (e) => { sent.push(e); return search(e) }, core: fakeCore })
 const node = { kind: 'node' }
@@ -58,7 +58,7 @@ const g = await checkout({}, node)
 check('a free cart → paid, installed, order kept', g.status === 200 && g.body.state === 'paid' && calls.map((c) => c[0]).join() === 'purchase,order,install', { g, calls })
 const pu = await purchases({}, node)
 check('install sent the order and the starter, not «again»', calls.find((c) => c[0] === 'install')?.slice(1).join() === 'ord-000000000000000000000001,fractera-test-post-starter,false', calls)
-check('«Покупки» shows it with its version; a running install is asked once and settles «installed»', pu.body.purchases.length === 1 && pu.body.purchases[0].version === 'v0.1.0' && pu.body.purchases[0].install.state === 'installed' && pu.body.purchases[0].install.reason === 'test-post', pu.body)
+check('«Купленные» shows it with its version; a running install is asked once and settles «installed» with its element and address', pu.body.purchases.length === 1 && pu.body.purchases[0].version === 'v0.1.0' && pu.body.purchases[0].install.state === 'installed' && pu.body.purchases[0].install.element?.id === 'test-post' && pu.body.purchases[0].install.element?.address === 'https://test-post.example.org', pu.body)
 const again = await cart({ action: 'add', starter: 'fractera-test-post-starter' }, node)
 check('a bought starter does not go to the cart again', again.status === 404 || again.status === 409, again)
 const ri = await reinstall({ starter: 'fractera-test-post-starter' }, node) // installed before → again: true

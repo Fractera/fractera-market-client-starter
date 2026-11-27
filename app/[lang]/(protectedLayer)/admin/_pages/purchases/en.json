@@ -1,10 +1,10 @@
 {
-  "title": "Purchases",
-  "description": "The starters this project got, their versions and authors.",
+  "title": "Bought",
+  "description": "The starters this project bought: what is bought and what is already installed.",
   "body": [
     {
       "kind": "text-p",
-      "text": "Only what the core confirmed as received is here. A bought starter can be installed again with no new payment.",
+      "text": "Buying and installing are not the same. Here is everything the core confirmed as bought; «Install» makes the starter an element of the project with no new payment.",
       "bid": "i0nws"
     },
     {

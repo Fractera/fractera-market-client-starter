@@ -46,7 +46,8 @@ export function RecommendationsView({
     )
   }
 
-  const byPrice = rows.map((_, i) => i).sort((a, b) => rows[a].price.amount - rows[b].price.amount)
+  // Equal prices keep the list's own order in both directions (step 4-2: «Цена ↓» swapped two free rows).
+  const priceOrder = (dir: 1 | -1) => rows.map((_, i) => i).sort((a, b) => dir * (rows[a].price.amount - rows[b].price.amount) || a - b)
   const c = words.columns
 
   return (
@@ -60,8 +61,8 @@ export function RecommendationsView({
         { label: words.onlyFractera, match: rows.map(isFractera) },
       ]}
       sorts={[
-        { label: words.priceUp, order: byPrice },
-        { label: words.priceDown, order: [...byPrice].reverse() },
+        { label: words.priceUp, order: priceOrder(1) },
+        { label: words.priceDown, order: priceOrder(-1) },
       ]}
       head={
         <TableRow data-block="rv3ac">

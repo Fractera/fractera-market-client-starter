@@ -1,5 +1,5 @@
 "use client"
-// @local — the live part of «Покупки» (steps 3-4, 3-4b): what the core confirmed as paid, its install state, «Установить ещё раз»
+// @local — the live part of «Купленные» (steps 3-4, 3-4b, 4-3): what the core confirmed as paid, its install state, «Установить» or «Установить ещё раз»
 // on the same order with no new payment (R-05).
 import { useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
@@ -22,7 +22,7 @@ export function PurchasesIsland({ lang, words }: { lang: string; words: Purchase
     void load()
   }, [load])
 
-  async function onReinstall(p: Purchase) {
+  async function onInstall(p: Purchase) {
     setBusy(true)
     const a = await marketCall(lang, { op: "reinstall", starter: p.starter })
     setBusy(false)
@@ -31,5 +31,5 @@ export function PurchasesIsland({ lang, words }: { lang: string; words: Purchase
     await load()
   }
 
-  return <PurchasesView lang={lang} words={words} state={state} onReinstall={busy ? undefined : onReinstall} />
+  return <PurchasesView lang={lang} words={words} state={state} onInstall={busy ? undefined : onInstall} />
 }

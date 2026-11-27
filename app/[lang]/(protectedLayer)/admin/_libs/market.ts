@@ -28,7 +28,7 @@ export type TaskGroup = { task: string; rows: RecommendationRow[] }
 export type CartLine = { starter: string; name: string; price: Money; added: string }
 export type CartData = { lines: CartLine[]; total: Money }
 
-export type Install = { state: string; reason: string | null }
+export type Install = { state: string; reason: string | null; element?: { id: string; address: string | null } | null }
 export type Purchase = {
   starter: string
   name: string

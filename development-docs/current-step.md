@@ -8,11 +8,16 @@ Stage: 1
 
 **Last change:** step 3 closed (f7637b1); step 4 planned.
 
-**Next action:** the core builds/deploys the 4-1 commit → `npm run eyes` at 1440 and 390 on /ru/admin/recommendations → 4-2 (main pass): each filter and sort proven on the live rows.
+**Now (2026-11-27 ~21:10):** 4-2 proven on the deployed 4-1 (2 live rows; the tie-swap of «Цена ↓» fixed). 4-3 coded: the drawer's three entries (`lib/menu/account-links.ts`), «Покупки» → «Купленные» with «Куплен» + the install state + «Установить» / «Установить ещё раз», the install keeps {element, address}, the pager on a phone (table-tools v1.1.1). prebuild RC=0, the market test OK. Page titles live already (data); the code waits for the core's build.
+
+**Next action:** the core builds → eyes 1440/390 on /ru/admin/purchases, /ru/admin/recommendations and the open drawer → close step 4.
+Defect to the core: GET install for ord-9adb22acd9ead131be080c96 answers «failed: this order is already installed here: mpso1» — it should answer `installed` with the element (and its address), or «Купленные» keeps offering «Установить» for an installed starter.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27 20:57 UTC, the architect (Telegram 1651, through the core's main agent): «Также хочу сказать что у нас есть вкладка личный кабинет, там есть выдвижной ящик где мы должны оставить вкладку рекомендованные элементы, и корзина сможем из этой вкладки начать оптимизацию интерфейса. Очевидно что нам нужна ещё вкладка купленные потому что купить и активировать это не одно и тоже же согласен? И на этой вкладке мы нажимаемкнопку установить элементы. Сначала проработаем интерфейс на компьютере потом будем думать как это реализовать на Telegram мини приложение».
 
 - 2026-11-27 20:49 UTC, the architect (Telegram 1649, through the core's main agent): «Хорошо давай тогда чуть-чуть покрути дизайн этого инструмента? Во-первых нужно посмотреть как у нас выглядит стандартный инструменты для похожих выдачей. Возьмите примера дашь борт Projects обрати внимание что там есть пагинация там есть поиск по таблице это не тот же самый поиск который у тебя конечно же там должен стоять твой поиск ну и фильтры должны быть например бесплатные, например от Fractera а также должна быть сортировку по цене верх и вниз переработать дизайн этой страницы».
 

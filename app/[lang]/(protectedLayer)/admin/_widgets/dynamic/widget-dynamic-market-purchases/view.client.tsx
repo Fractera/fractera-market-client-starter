@@ -1,7 +1,9 @@
 "use client"
-// @local — the island «Покупки» (step 3-1, design): what the core confirmed as received, its version and author, «Установить ещё
-// раз» with no new payment. An honest empty state: nothing is shown as bought before the core says so (R-04). The data and the
-// action come from its island (island.client.tsx); while `state` is «loading» the view shows its own skeleton.
+// @local — the island «Купленные» (steps 3-1, 4-3): buying and installing are not the same (the architect, Telegram 1651). Each row:
+// «Куплен», the install state (not installed · installing · installed as <element> at its address · failed with the reason) and one
+// button — «Установить» while it is not installed, «Установить ещё раз» only once it is. Nothing is shown as bought before the core
+// says so (R-04). The data and the action come from its island (island.client.tsx); «loading» shows its own skeleton.
+import { Badge } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { EmptyState } from "@/components/ui/empty-state"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -10,16 +12,19 @@ import type { PurchasesWords } from "./words.i18n"
 
 type State = { kind: "loading" } | { kind: "unavailable" } | { kind: "ready"; purchases: Purchase[] }
 
+const RUNNING = new Set(["running", "started", "installing"])
+const INSTALLED = new Set(["installed", "done"])
+
 export function PurchasesView({
   lang,
   words,
   state = { kind: "loading" },
-  onReinstall,
+  onInstall,
 }: {
   lang: string
   words: PurchasesWords
   state?: State
-  onReinstall?: (p: Purchase) => void
+  onInstall?: (p: Purchase) => void
 }) {
   if (state.kind === "loading") return <PurchasesSkeleton label={words.loading} />
   if (state.kind === "unavailable") return <PurchasesSkeleton label={words.unavailable} />
@@ -27,36 +32,73 @@ export function PurchasesView({
 
   return (
     <ul data-block="iojyb" className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
-      {state.purchases.map((p) => (
-        <li data-block="wg9rt" key={p.starter} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div data-block="h0k53" className="flex min-w-0 flex-col gap-0.5">
-            {p.page ? (
-              <a
-                href={p.page}
-                target="_blank"
-                rel="noreferrer"
-                className={buttonVariants({ variant: "link", className: "h-auto justify-start p-0 text-base font-semibold" })}
-              >
-                {p.name}
-              </a>
-            ) : (
-              <span className="text-base font-semibold text-foreground">{p.name}</span>
-            )}
-            <span className="text-xs tabular-nums text-muted-foreground">
-              {words.version} {p.version} · {words.author} {p.author} · {words.got} {when(p.time, lang)}
-            </span>
-            {p.install && (
-              <span className="text-xs text-muted-foreground">
-                {words.install[p.install.state] ?? p.install.state}
-                {p.install.reason && <> · {p.install.reason}</>}
+      {state.purchases.map((p) => {
+        const st = p.install?.state ?? "none"
+        const installed = INSTALLED.has(st)
+        const running = RUNNING.has(st)
+        const el = p.install?.element
+        return (
+          <li data-block="wg9rt" key={p.starter} className="flex flex-col gap-3 p-4 md:flex-row md:items-center md:gap-6">
+            <div data-block="h0k53" className="flex min-w-0 flex-1 flex-col gap-0.5">
+              {p.page ? (
+                <a
+                  href={p.page}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={buttonVariants({ variant: "link", className: "h-auto justify-start p-0 text-base font-semibold" })}
+                >
+                  {p.name}
+                </a>
+              ) : (
+                <span className="text-base font-semibold text-foreground">{p.name}</span>
+              )}
+              <span className="text-xs tabular-nums text-muted-foreground">
+                {words.version} {p.version} · {words.author} {p.author} · {words.got} {when(p.time, lang)}
               </span>
-            )}
-          </div>
-          <Button size="sm" variant="outline" disabled={!onReinstall} onClick={() => onReinstall?.(p)}>
-            {words.reinstall}
-          </Button>
-        </li>
-      ))}
+            </div>
+
+            <div data-block="pst4c" className="flex min-w-0 flex-col gap-1 md:w-80">
+              <div data-block="pst5b" className="flex flex-wrap items-center gap-1.5" data-install-state={st}>
+                <Badge data-block="u3ug8" variant="outline">{words.bought}</Badge>
+                <Badge data-block="glqt5" variant={installed ? "default" : st === "failed" ? "destructive" : "secondary"}>
+                  {words.state[st] ?? st}
+                </Badge>
+              </div>
+              {installed && el && (
+                <span className="truncate text-xs text-muted-foreground">
+                  {words.element} <span className="font-medium text-foreground">{el.id}</span>
+                  {el.address && (
+                    <>
+                      {" · "}
+                      <a
+                        href={el.address}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={buttonVariants({ variant: "link", className: "h-auto p-0 text-xs" })}
+                      >
+                        {el.address.replace(/^https?:\/\//, "")}
+                      </a>
+                    </>
+                  )}
+                </span>
+              )}
+              {!installed && p.install?.reason && (
+                <span className="text-xs text-muted-foreground [overflow-wrap:anywhere]">{p.install.reason}</span>
+              )}
+            </div>
+
+            <Button
+              size="sm"
+              variant={installed ? "outline" : "default"}
+              className="self-start md:w-44 md:self-center"
+              disabled={!onInstall || running}
+              onClick={() => onInstall?.(p)}
+            >
+              {running ? words.installing : installed ? words.reinstall : words.install}
+            </Button>
+          </li>
+        )
+      })}
     </ul>
   )
 }

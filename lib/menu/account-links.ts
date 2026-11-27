@@ -6,7 +6,7 @@ const ARCHITECT_TITLE: Record<string, string> = {
   en: "The architect group of pages",
   ru: "Группа страниц архитектора",
 }
-import { ARCHITECT_LAYER_ROLES } from "@/lib/roles"
+import { ARCHITECT_LAYER_ROLES, PROTECTED_GROUP_ROLES } from "@/lib/roles"
 
 // РАБОЧИЕ РАЗДЕЛЫ, которые ящик аккаунта показывает вошедшему.
 //
@@ -66,8 +66,19 @@ const OWNER_PAGES: { path: string; label: Record<string, string> }[] = [
   { path: "build/telegram", label: { en: "Telegram activation", ru: "Активация Telegram" } },
 ]
 
+// Step 4-3 (the architect, 2026-11-27, Telegram 1651): «в выдвижном ящике … вкладку рекомендованные элементы, и корзина … ещё
+// вкладка купленные». The marketplace pages first; each label is its page's own title, the roles are the admin layer's own.
+const MARKET_PAGES = ["recommendations", "cart", "purchases"]
+function marketLinks(lang: string): DrawerLink[] {
+  return MARKET_PAGES.flatMap((slug) => {
+    const page = branchChild(["(protectedLayer)", "admin"], slug)
+    return page ? [{ href: `/${lang}/admin/${slug}`, label: wordsIn(page, lang).title, roles: [...PROTECTED_GROUP_ROLES.admin] }] : []
+  })
+}
+
 export function accountLinks(lang: string): DrawerLink[] {
   return [
+    ...marketLinks(lang),
     ...OWNER_PAGES.map((p) => ({
       href: architectHref(lang, p.path),
       label: p.label[lang] ?? p.label.en,

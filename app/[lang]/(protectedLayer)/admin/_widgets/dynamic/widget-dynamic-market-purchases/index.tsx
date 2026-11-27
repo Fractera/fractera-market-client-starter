@@ -1,4 +1,4 @@
-// @local — the server entry of the widget «Покупки»: picks the words, renders the island.
+// @local — the server entry of the widget «Купленные»: picks the words, renders the island.
 import { PurchasesIsland } from "./island.client"
 import { purchasesWords } from "./words.i18n"
 

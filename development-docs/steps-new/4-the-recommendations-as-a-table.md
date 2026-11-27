@@ -14,6 +14,13 @@ field stays the store search (a task in words → starters), the toggles are the
 sort by price ↑ / ↓; the rows are the starters (name, author, price, the task that asked, state) with the three actions; pages below.
 Remove the stage-0 «симуляция» rows (done 2026-11-27 as data: two rows deleted through the page's door, 200 each).
 
+The core's main agent, 2026-11-27 ~21:00, passing the architect's words (Telegram 1651, 20:57 UTC), verbatim:
+«Также хочу сказать что у нас есть вкладка личный кабинет, там есть выдвижной ящик где мы должны оставить вкладку рекомендованные элементы, и корзина сможем из этой вкладки начать оптимизацию интерфейса. Очевидно что нам нужна ещё вкладка купленные потому что купить и активировать это не одно и тоже же согласен? И на этой вкладке мы нажимаемкнопку установить элементы. Сначала проработаем интерфейс на компьютере потом будем думать как это реализовать на Telegram мини приложение».
+The core's reading, into this step: the «Личный кабинет» drawer gets three entries — «Рекомендованные элементы», «Корзина», «Купленные»;
+«Покупки» becomes «Купленные», where every bought starter shows bought vs installed and carries «Установить» (installed → its element
+and address; «Установить ещё раз» only for an installed one). The Telegram Mini App later, not now. Also: at 390 the pager wraps
+«Страница 1 из 1» — tidy it on a phone, the desktop first.
+
 **Exists and reused:** `TableTools` lives in the core — `parts_find` «table with search and pages» → `npm run tool:take -- table-tools`
 (taken as it is, never hand-built); the branch door `admin/api/market` and `lib/market` (step 3) unchanged unless a field is missing
 (author is already in the rows).
@@ -26,6 +33,14 @@ Remove the stage-0 «симуляция» rows (done 2026-11-27 as data: two row
    toggles «Бесплатные», «От Fractera», the price sort ↑ / ↓, «Сбросить отбор»; columns № · starter (link) · author · price · task ·
    state · actions; rows per page and pages. Check: `npm run eyes` at 1440 and 390 px with rows (one live search first, since the list
    is empty after the clean-up) — no overflow at 390; full `npm run prebuild` RC=0.
-2. Pass: main — the filters and the sort proven on rows: free only, Fractera only, price ↑ / ↓, reset; the three actions still act.
+2. Pass: main — [done 2026-11-27 on the deployed 4-1; eyes 21:04 UTC] the filters and the sort proven on rows: free only, Fractera only, price ↑ / ↓, reset; the three actions still act.
    Check: a sample or the live page — each toggle changes the row count as expected.
-3. Close: commit, report to the core; the core deploys and looks.
+   Evidence: one live search added a second row (2 rows, both free, both Fractera — the store holds no paid or foreign starter
+   today); both filters on → «Показано 1-2 из 2» (right: both admit every row); «Цена ↓» swapped two equal free rows → fixed
+   (equal prices keep the list's order both ways). Not proven live: narrowing by a paid or a foreign row — none exists in the store.
+3. Pass: main — [coded 2026-11-27; eyes wait for the core's build] the drawer and «Купленные» (Telegram 1651): three drawer entries (labels from the pages' own titles, admin roles);
+   «Покупки» → «Купленные» (address `/admin/purchases` kept); each row: «Куплен» and the install state (not installed · installing ·
+   installed as <element> with its address · failed with the reason); the button «Установить» when not installed or failed,
+   «Установить ещё раз» only when installed; the pager on a phone without a wrapped label. Check: prebuild RC=0; eyes 1440 and 390
+   on /ru/admin/purchases and the open drawer; the one live purchase shows its real state.
+4. Close: commit, report to the core; the core deploys and looks.

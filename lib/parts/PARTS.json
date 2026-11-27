@@ -14,7 +14,7 @@
         "en": "Table with search and pages",
         "ru": "Таблица с поиском и страницами"
       },
-      "version": "1.1.0",
+      "version": "1.1.1",
       "parts": [],
       "scope": "any",
       "path": "components/table/table-tools.client.tsx",
@@ -41,7 +41,7 @@
           "список с фильтром"
         ]
       },
-      "bodyHash": "8066a567da0d0c72",
+      "bodyHash": "5904ae27bb523c96",
       "origin": {
         "from": "core",
         "id": "table-tools",
@@ -529,6 +529,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-purchases/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/row.client.tsx",
         "app/[lang]/(publicLayer)/_widgets/static/widget-static-native-landing/index.tsx",
