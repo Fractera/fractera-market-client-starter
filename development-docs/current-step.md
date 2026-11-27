@@ -2,14 +2,17 @@
 
 **Active step:** none — step 2 closed (`steps-done/2.md`); stage 0 is built and checked on a temporary server, waiting for «Deploy».
 
-**Last change:** step 2 — the doors recommend · recommendations · choice · cart · history, the data in the data element, the v2 stub.
+**Last change:** stage 0 deployed by the core's main agent 14:43 and checked live on 24697 (401 without key; history 0 → 1; cart
+twice → one line). Step 3 planned, held in the intake. Before: step 2 — the doors recommend · recommendations · choice · cart · history, the data in the data element, the v2 stub.
 
-**Next action:** the person's «Deploy» on «Preview & Deploy» → check the five doors on the live element (24697): no key 401, two
-searches carry the history. Then stage 0 → done in the quiz and step 3 (stage 1, the pages) is planned.
+**Next action:** the architect's word «stage 0 done» → the step 3 plan (`pre-steps/27-11-2026_15-00-00-step-3-plan.md`) moves to
+`steps-new/`, then the three lines' «yes» → substep 3-1 (design pass).
 
-**Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2, the architect may correct).
+**Queue:** `pre-steps/27-11-2026_15-00-00-step-3-plan.md` (step 3, stage 1). Open in the quiz: Q-01, Q-02 (defaults taken in step 2, the architect may correct).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27, the core's main agent: «Отмечать этап 0 "done" в квизе пока не надо: это слово архитектора» — stage 0 stays open until the architect says so.
 
 - 2026-11-27, the core's main agent: «Да» — the plan of stage 0 accepted as written; substep 2-1 not needed, the search v2 standard given.
 - 2026-11-27: «Да согласен разумно делать это как нативный элемент … при переустановке сервера он должен приезжать это точно» — The client is a native element pre-installed in every project and comes back with a server reinstall.
