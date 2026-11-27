@@ -57,36 +57,48 @@ Skill `mobile-app-ui-design` (author ceorkm, 491★, 12k installs, as the core n
 in the thumb zone (the lower third of the screen), touch targets ≥ 44 pt, an 8-point grid. In a Mini App the lower third is where
 Telegram's own `MainButton` already sits — so the one action of the part goes there, not into our own markup.
 
-## 4. Variants
+## 4. Where the marketplace part lives (the architect, Telegram 1684)
 
-**A. «Маркет» as a remote card (pick).** In the core's Mini App, inside its part «site» of this element: three counters in one card —
-«Рекомендовано · ждут решения N», «В корзине N · итог», «Куплено · не установлено N»; a tap on a counter opens the real page
-(`/ru/admin/recommendations`, `/cart`, `/purchases`) where the person acts by role; one search line «Найти стартер…» that sends the
-task to this element's store search and answers with «найдено N — открыть»; a jump to the chat of the topic «Маркетплейс»; the
-`MainButton` «Открыть рекомендации» when something waits. Nothing is bought, kept or deleted inside the Mini App.
-Why: it is exactly the remote the law asks for, it never copies a page, and it keeps the Mini App clear of the Stars rule.
+The architect, 2026-11-27 21:51 UTC, verbatim: «Насколько я понимаю для телеграмм приложения нам нужно показывать поиск элементов для ядра и для кастомных элементов не так ли? Не вижу смысла показывать этот интерфейс для активных элементов согласен?»
+(«активных» is voice-typed «нативных».) Agreed, and why: a native element is a preinstalled convenience of the node — the person does
+not grow it by buying starters, so a marketplace part there is noise. Two places only:
+- **the core's own Mini App** (the main bot's «Пульт») — the whole project: every element's recommendations, the one cart, all that
+  was bought;
+- **a custom element's Mini App** — that element alone: the starters found for its tasks, and a search on its behalf.
+Never in a native element's Mini App — this element's own (step 853's three parts) included.
 
-**B. Messages first, the Mini App as a link.** No part in the Mini App beyond one counter; the bot writes a message when new starters
-land in the recommendations («Найдено 2 стартера для задачи: пост по заголовку — открыть») with an inline button / a `startapp` link that
-opens the card of that starter. Good for attention; weak as a remote — no overview, the chat fills with notices. Best as an addition
-to A (a notice on new recommendations), not instead of it.
+## 5. Variants
 
-**C. A small store inside the Mini App** — cards, «Оставить / Удалить / В корзину», the cart and «Оплатить» in Telegram. Refused:
-it copies the pages (against §6, step 848), and a card payment for a digital good inside Telegram breaks the Stars rule (B) — the risk
-is the node's Mini App hidden from mobile users. Possible only as a separate decision to sell in Stars.
+**A. A remote card «Маркет» in both places (pick).** One card, two scopes.
+- In «Пульт» (the project): three counters — «Ждут решения N», «В корзине N · итог», «Куплено, не установлено N»; a tap on a counter
+  opens the real page (`/ru/admin/recommendations`, `/cart`, `/purchases`) where the person acts by role; one line «Найти стартер…»
+  (the store search, the task written by the person); the `MainButton` «Открыть рекомендации» when something waits; a jump to the
+  chat topic of the marketplace.
+- In a custom element's Mini App (that element): one line — «Для этого элемента найдено N стартеров, ждут решения M» — and the search
+  «Найти стартер для этого элемента…», the task recorded as that element's; a tap opens the recommendations page filtered to it. The
+  cart and the purchases stay project-wide: one cart, one payment — they are not repeated per element.
+- Nothing is bought, kept or deleted inside Telegram.
+Why: the remote the law asks for, no page copied, clear of the Stars rule; the scope follows who looks — the project or one element.
 
-## 5. Who builds what (variant A)
+**B. Messages first.** The bot writes when new starters land («Найдено 2 стартера для задачи: пост по заголовку — открыть») with a
+`startapp` link to that starter's card: in the main bot for the project, in a custom element's bot for its own tasks. Good for
+attention, weak as a remote; best as an addition to A.
 
-- **The core:** the «Маркет» card in its Mini App (part «site» of this element), the Telegram side — `initData` validation, theme
-  variables, safe areas, `MainButton`, `BackButton`, the `startapp` links, the jump to the chat topic; it reads the counters from this
-  element's door with the node key.
-- **This element:** one door `GET /api/summary` → `{ waiting, cart: { lines, total }, bought: { notInstalled } }` (no model, one
-  read of its own data); the store search door it already has (`POST /api/recommend`) for the search line; page links that open the
-  card of one starter straight (`/ru/admin/recommendations?open=<slug>`) so a link from Telegram lands on the right row; the real pages
-  already work at 390 px (step 4: the card as a 90 % drawer).
-- Nothing here is built until the core and the architect say which variant.
+**C. A small store inside the Mini App** (cards, decisions, cart, «Оплатить»). Refused: it copies the pages (§6, step 848), and a card
+payment for a digital good inside Telegram breaks the Stars rule — the node's Mini App could be hidden from mobile users.
 
-## 6. The one question for the architect
+## 6. Who builds what (variant A)
+
+- **The core:** the «Маркет» card in «Пульт», and the same card for the custom elements' Mini Apps (it draws every element's Mini App
+  — step 853 — and it is the orchestrator a custom element reaches this element through); the Telegram side — `initData` validation,
+  theme variables, safe areas, `MainButton`, `BackButton`, `startapp` links, the chat topic. A native element's Mini App gets no card.
+- **This element:** one door `GET /api/summary` → `{ waiting, cart: { lines, total }, bought: { notInstalled } }`, and
+  `?element=<id>` → that element's `{ found, waiting }` (no model, one read of its own data; the rows already carry `element`); the
+  store search door it has (`POST /api/recommend { element, task, lang }`) — the task recorded as the custom element's; page links
+  that open one starter's card or one element's rows straight (`/ru/admin/recommendations?open=<slug>`, `?element=<id>`).
+- Nothing here is built until the core and the architect choose the variant.
+
+## 7. The one question for the architect
 
 Will starters ever be sold right inside Telegram for Stars, or is payment always only on the site? — the answer decides whether the
 Mini App stays a remote that links to the cart (A) or one day takes a Stars payment (a separate step with `/terms`, `/paysupport`, refunds).
