@@ -62,13 +62,22 @@ const again = await cart({ action: 'add', starter: 'fractera-test-post-starter' 
 check('a bought starter does not go to the cart again', again.status === 404 || again.status === 409, again)
 const ri = await reinstall({ starter: 'fractera-test-post-starter' }, node)
 check('install again: no purchase, same order', ri.status === 200 && calls.at(-1)[0] === 'install' && calls.filter((c) => c[0] === 'purchase').length === 1, calls)
+// The core answers «already-ordered» for a starter this project ordered before: the old order is taken, no second payment.
+const r3 = await handle({ element: 'blog', task: 'картинка' }, node)
+const imgRow = r3.body.rows.find((r) => r.name === 'Тестовая картинка')
+await choice({ row: imgRow.id, action: 'cart' }, node)
+fakeCore.purchase = async (slugs) => { calls.push(['purchase', slugs]); return { ok: true, state: 'already-ordered', items: slugs.map((s) => ({ slug: s, order: 'ord-000000000000000000000002' })) } }
+fakeCore.order = async (id) => { calls.push(['order', id]); return { ok: true, order: id, paid: true, items: [{ slug: 'fractera-test-image-starter', name: 'Тестовая картинка', tag: 'v0.1.0' }] } }
+const ao = await checkout({}, node)
+const pu2 = await purchases({}, node)
+check('«already-ordered» → the old order is recorded and installed', ao.status === 200 && ao.body.orders[0] === 'ord-000000000000000000000002' && pu2.body.purchases.length === 2 && calls.at(-1)[0] === 'install', { ao, calls })
 const empty = await checkout({}, node)
 check('an empty cart is refused', empty.status === 400, empty)
 const paidRepo = memoryRepo()
 await paidRepo.addCart({ slug: 'paid-starter', name: 'Paid', price_amount: 5, price_currency: 'USD', added_at: '' })
 use({ repo: paidRepo })
 const pd = await checkout({}, node)
-check('a paid cart: payment hidden, nothing sent', pd.status === 402 && calls.filter((c) => c[0] === 'purchase').length === 1, pd)
+check('a paid cart: payment hidden, nothing sent', pd.status === 402 && calls.filter((c) => c[0] === 'purchase').length === 2, pd)
 
 if (failures) { console.error(`===TEST_RECOMMEND_FAILED=== ${failures}`); process.exit(1) }
 console.log('===TEST_RECOMMEND_OK===')

@@ -13,7 +13,16 @@ Stage: 1
 temporary `next dev` (port 24797, stopped after): the three pages answer 200, the skeletons draw, no console errors. The live site shows
 the islands only after a build (the step closes with one build, substep 7).
 
-**Next action:** the build — «Deploy» on «Preview & Deploy» by the architect or the leader (deploy-element: never on my own initiative),
+**Live run 2026-11-27 20:06 on c14bc19:** search through the page's door → «Тестовый пост — стартер», `mode: live`, not simulated ✓;
+«В корзину» clicked in the browser (`npm run eyes --click`) → the row «cart», one cart line ✓; «Получить» clicked → buttons went busy,
+the eyes window closed before the answer, nothing recorded. The same POST by curl → `202 {state:"already-ordered"}`: the core answers a
+starter ordered before with `already-ordered` and the old order on each item (`ord-9adb22acd9ead131be080c96`, paid, tag v0.1.0) —
+checkout did not know this answer. Fixed in lib/market (the old order taken, checked with the core, recorded, installed; test added,
+20/20, prebuild RC=0). Whether the eyes click made ord-9adb is not known (the core's order answer has no time).
+Access (5) live: anonymous → the branch gate «Эта страница вам недоступна» (390 px), the door `401 architect_only` ✓; another role
+(admin passes the branch gate) gets 403 from the door — by code, not checked live (no such session here).
+
+**Next action:** the second build — «Deploy» on «Preview & Deploy» by the architect or the leader (deploy-element: never on my own initiative),
 then the live end-to-end on /ru/admin/recommendations → cart → «Получить» → purchases, the access check (5), close the step (7).
 
 **Case matrix (before-a-build):** plane — this computer only (no server for this node's market today); address — as born
