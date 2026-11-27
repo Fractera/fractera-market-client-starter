@@ -1,24 +1,10 @@
 # Current step
 
-**Active step:** 4 — «Рекомендации» as a table with search, filters, sort and pages (`development-docs/steps-new/4-the-recommendations-as-a-table.md`).
-State: 4-1 (design) coded 2026-11-27 — `table-tools` taken (core v1.0.1) and made own (v1.1.0: shadcn controls, caller's search, narrowing filters, sorts); the island rebuilt on it (f59fd3d); prebuild RC=0; one live search added a row («Тестовый пост — стартер», Fractera, free). Not yet seen: the new look needs a build (the core deploys); eyes at 1440/390 and the 4-2 proofs ride on that same build.
+**Active step:** none — step 4 closed 2026-11-27 (`steps-done/4.md`).
 
-Serves: S-03, S-04
-Stage: 1
+**Last change:** step 4 — the three marketplace pages as tables with one table-and-card layout (f59fd3d, 0402b19, ac27a0a, f5e96d8), seen live at 1440 and 390.
 
-**Last change:** step 3 closed (f7637b1); step 4 planned.
-
-**Now (2026-11-27 ~21:10):** 4-2 proven on the deployed 4-1 (2 live rows; the tie-swap of «Цена ↓» fixed). 4-3 coded (0402b19): the drawer's three entries (`lib/menu/account-links.ts`), «Покупки» → «Купленные» with «Куплен» + the install state + «Установить» / «Установить ещё раз», the install keeps {element, address}, the pager on a phone (table-tools v1.1.1). prebuild RC=0, the market test OK. Page titles live already (data); the code waits for the core's build.
-
-**Now (21:20):** 4-4 coded (ac27a0a) — one master-detail layout (`table-detail`: Resizable 50/50, 30–70; a 90 % drawer on a phone) for all three pages, one `StarterCard`; prebuild RC=0. Eyes wait for the core's build.
-
-**Then (21:25):** the core deployed 4-4 (e9c2a1d) and looked; fixes in one more commit (f5e96d8): the card's clipped edge, version and report in the card, «Покупки» → «Купленные» in the cart's text. «Что умеет» stays English (the store has no Russian description).
-
-**Intake:** empty. `27-11-2026_21-08-00.md` (the «f2f · Web2» tab) moved to `handled/` — the core writes that tab and its text on its own page.
-**Waiting:** the core deploys f5e96d8 and looks; then eyes on the card (1440, 390) and close step 4.
-
-**Next action (after 4-4):** the core builds → eyes 1440/390 on /ru/admin/purchases, /ru/admin/recommendations and the open drawer → close step 4.
-Defect to the core: GET install for ord-9adb22acd9ead131be080c96 answers «failed: this order is already installed here: mpso1» — it should answer `installed` with the element (and its address), or «Купленные» keeps offering «Установить» for an installed starter.
+**Next action:** wait for the core's next task. Open with the core: GET install answers `failed` for an order already installed here (backlog).
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
