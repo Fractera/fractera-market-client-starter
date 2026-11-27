@@ -10,12 +10,19 @@ Stage: 1
 
 **Now (2026-11-27 ~21:10):** 4-2 proven on the deployed 4-1 (2 live rows; the tie-swap of «Цена ↓» fixed). 4-3 coded (0402b19): the drawer's three entries (`lib/menu/account-links.ts`), «Покупки» → «Купленные» with «Куплен» + the install state + «Установить» / «Установить ещё раз», the install keeps {element, address}, the pager on a phone (table-tools v1.1.1). prebuild RC=0, the market test OK. Page titles live already (data); the code waits for the core's build.
 
-**Next action:** the core builds → eyes 1440/390 on /ru/admin/purchases, /ru/admin/recommendations and the open drawer → close step 4.
+**Now (21:20):** 4-4 coded — one master-detail layout (`table-detail`: Resizable 50/50, 30–70; a 90 % drawer on a phone) for all three pages, one `StarterCard`; prebuild RC=0. Eyes wait for the core's build.
+
+**Intake:** `pre-steps/27-11-2026_21-08-00.md` — the «f2f · Web2» tab on «Как это работает»: that page is the core's, and the text is the texts pass; named back to the core.
+
+**Next action (after 4-4):** the core builds → eyes 1440/390 on /ru/admin/purchases, /ru/admin/recommendations and the open drawer → close step 4.
 Defect to the core: GET install for ord-9adb22acd9ead131be080c96 answers «failed: this order is already installed here: mpso1» — it should answer `installed` with the element (and its address), or «Купленные» keeps offering «Установить» for an installed starter.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27 21:01 UTC, the architect (Telegram 1654): «Интерфейс который ты мне представил мне нравится сделай ещё так чтобы когда я выбираю какую-либо шаблон и нажимаю на его название этот экран делится на две части причём будем использовать специальный элемент shadcn - resizable по умолчанию установил состояние 50% но позволим делать диапазон от 30 до 70% то есть поставить ручку для дизайна ширины. В мобильной версии просто выезжает ящик с шириной экрана 90%».
+- 2026-11-27 21:01 UTC, the architect (Telegram 1655): «Этот же макет будем использовать и для корзины и для купленных».
 
 - 2026-11-27 20:57 UTC, the architect (Telegram 1651, through the core's main agent): «Также хочу сказать что у нас есть вкладка личный кабинет, там есть выдвижной ящик где мы должны оставить вкладку рекомендованные элементы, и корзина сможем из этой вкладки начать оптимизацию интерфейса. Очевидно что нам нужна ещё вкладка купленные потому что купить и активировать это не одно и тоже же согласен? И на этой вкладке мы нажимаемкнопку установить элементы. Сначала проработаем интерфейс на компьютере потом будем думать как это реализовать на Telegram мини приложение».
 

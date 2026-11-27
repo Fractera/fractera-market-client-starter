@@ -15,6 +15,9 @@ export type PurchasesWords = {
   state: Record<string, string>
   installStarted: string
   failed: string
+  columns: { n: string; starter: string; author: string; version: string; got: string; state: string; actions: string }
+  notInstalled: string
+  onlyFractera: string
 }
 
 const en: PurchasesWords = {
@@ -33,6 +36,9 @@ const en: PurchasesWords = {
   state: { none: "Not installed", running: "Installing", started: "Installing", installing: "Installing", installed: "Installed", done: "Installed", failed: "Install failed" },
   installStarted: "The core started the install — no new payment. Reload the page to see the result.",
   failed: "It did not work:",
+  columns: { n: "No.", starter: "Starter", author: "Author", version: "Version", got: "Bought", state: "State", actions: "Actions" },
+  notInstalled: "Not installed",
+  onlyFractera: "By Fractera",
 }
 
 const ru: PurchasesWords = {
@@ -51,6 +57,9 @@ const ru: PurchasesWords = {
   state: { none: "Не установлен", running: "Устанавливается", started: "Устанавливается", installing: "Устанавливается", installed: "Установлен", done: "Установлен", failed: "Установка не удалась" },
   installStarted: "Ядро начало установку — без новой оплаты. Обновите страницу, чтобы увидеть итог.",
   failed: "Не получилось:",
+  columns: { n: "№", starter: "Стартер", author: "Автор", version: "Версия", got: "Куплен", state: "Состояние", actions: "Действия" },
+  notInstalled: "Не установленные",
+  onlyFractera: "От Fractera",
 }
 
 export const purchasesWords = (lang: string): PurchasesWords => (lang === "ru" ? ru : en)

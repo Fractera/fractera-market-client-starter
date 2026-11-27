@@ -17,6 +17,11 @@ export type CartWords = {
   failed: string
   consent: string
   toPurchases: string
+  columns: { n: string; starter: string; author: string; price: string; added: string; actions: string }
+  onlyFree: string
+  onlyFractera: string
+  priceUp: string
+  priceDown: string
 }
 
 const en: CartWords = {
@@ -32,11 +37,16 @@ const en: CartWords = {
   emptyHint: "Put a starter here from the recommendations.",
   unavailable: "The cart did not load. The page itself works — try again later.",
   getting: "Getting…",
-  gotDone: "Received. The core is installing it — see «Purchases».",
+  gotDone: "Received. The core is installing it — see «Bought».",
   pending: "The core has not confirmed it yet:",
   failed: "It did not work:",
   consent: "By pressing «Get» you agree to immediate delivery; no refund unless the law requires one.",
-  toPurchases: "Purchases",
+  toPurchases: "Bought",
+  columns: { n: "No.", starter: "Starter", author: "Author", price: "Price", added: "Added", actions: "Actions" },
+  onlyFree: "Free",
+  onlyFractera: "By Fractera",
+  priceUp: "Price ↑",
+  priceDown: "Price ↓",
 }
 
 const ru: CartWords = {
@@ -52,11 +62,16 @@ const ru: CartWords = {
   emptyHint: "Положите сюда стартер со страницы рекомендаций.",
   unavailable: "Корзина не загрузилась. Сама страница работает — попробуйте позже.",
   getting: "Получаю…",
-  gotDone: "Получено. Ядро устанавливает стартер — смотрите «Покупки».",
+  gotDone: "Получено. Ядро устанавливает стартер — смотрите «Купленные».",
   pending: "Ядро ещё не подтвердило:",
   failed: "Не получилось:",
   consent: "Нажимая «Получить», вы соглашаетесь на немедленную поставку; возврата нет, если его не требует закон.",
-  toPurchases: "Покупки",
+  toPurchases: "Купленные",
+  columns: { n: "№", starter: "Стартер", author: "Автор", price: "Цена", added: "Добавлен", actions: "Действия" },
+  onlyFree: "Бесплатные",
+  onlyFractera: "От Fractera",
+  priceUp: "Цена ↑",
+  priceDown: "Цена ↓",
 }
 
 export const cartWords = (lang: string): CartWords => (lang === "ru" ? ru : en)

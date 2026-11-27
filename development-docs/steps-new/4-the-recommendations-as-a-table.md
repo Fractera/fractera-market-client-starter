@@ -21,6 +21,14 @@ The core's reading, into this step: the «Личный кабинет» drawer g
 and address; «Установить ещё раз» only for an installed one). The Telegram Mini App later, not now. Also: at 390 the pager wraps
 «Страница 1 из 1» — tidy it on a phone, the desktop first.
 
+The core's main agent, 2026-11-27 ~21:05, passing the architect's words (Telegram 1654, 21:01 UTC), verbatim:
+«Интерфейс который ты мне представил мне нравится сделай ещё так чтобы когда я выбираю какую-либо шаблон и нажимаю на его название этот экран делится на две части причём будем использовать специальный элемент shadcn - resizable по умолчанию установил состояние 50% но позволим делать диапазон от 30 до 70% то есть поставить ручку для дизайна ширины. В мобильной версии просто выезжает ящик с шириной экрана 90%».
+And (Telegram 1655, 21:01 UTC), verbatim: «Этот же макет будем использовать и для корзины и для купленных».
+The core's reading: a click on a starter's name splits the page with shadcn Resizable (horizontal, the table left, the starter's card
+right; 50/50 by default, each side 30–70, with a handle); the card shows everything the store gives (name, author, price, version,
+description, what it can do, the task, its state) with the same actions and a close; below md the card opens in a side drawer at 90 %
+of the screen width. One layout for «Рекомендованные элементы», «Корзина» and «Купленные» — built once, reused, never three copies.
+
 **Exists and reused:** `TableTools` lives in the core — `parts_find` «table with search and pages» → `npm run tool:take -- table-tools`
 (taken as it is, never hand-built); the branch door `admin/api/market` and `lib/market` (step 3) unchanged unless a field is missing
 (author is already in the rows).
@@ -43,4 +51,13 @@ and address; «Установить ещё раз» only for an installed one). 
    installed as <element> with its address · failed with the reason); the button «Установить» when not installed or failed,
    «Установить ещё раз» only when installed; the pager on a phone without a wrapped label. Check: prebuild RC=0; eyes 1440 and 390
    on /ru/admin/purchases and the open drawer; the one live purchase shows its real state.
-4. Close: commit, report to the core; the core deploys and looks.
+4. Pass: main — [coded 2026-11-27; eyes wait for the core's build] one master-detail layout (Telegram 1654, 1655): shadcn `resizable` taken by `npx shadcn add`; one shared
+   part — the table left, the card right (50/50, 30–70, handle), a 90 % side `Sheet` below md; one card of a starter; «Корзина» and
+   «Купленные» become `table-tools` tables on it like «Рекомендованные элементы». Check: prebuild RC=0; after the core's build eyes
+   1440 (a name clicked → split; the handle) and 390 (a name clicked → the drawer) on all three pages.
+   Done: `components/ui/resizable.tsx` by `npx shadcn add` (its `import { cn } from "cn"` fixed to `@/lib/utils`, the stray npm
+   package `cn` removed — the known CLI defect); the part `table-detail` (components/table, card in parts.json); one
+   `StarterCard` in `admin/_components/`; the three islands on it; while the card is open the table keeps the main columns
+   only; the doors give `description` on a row and `about` (the latest recommendation) on cart lines and purchases.
+   Not given by the store search: a version before the purchase — the card shows a version only on «Купленные».
+5. Close: commit, report to the core; the core deploys and looks.

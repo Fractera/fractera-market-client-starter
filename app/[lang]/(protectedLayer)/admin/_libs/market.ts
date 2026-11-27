@@ -21,11 +21,14 @@ export type RecommendationRow = {
   status: "waiting" | "kept" | "cart"
   time: string
   author?: string
+  /** The store's description of the starter: what it can do. */
+  description?: string
 }
 
 export type TaskGroup = { task: string; rows: RecommendationRow[] }
 
-export type CartLine = { starter: string; name: string; price: Money; added: string }
+/** `about` — what the store said of the starter, from its latest recommendation (the card, step 4-4). */
+export type CartLine = { starter: string; name: string; price: Money; added: string; about?: RecommendationRow | null }
 export type CartData = { lines: CartLine[]; total: Money }
 
 export type Install = { state: string; reason: string | null; element?: { id: string; address: string | null } | null }
@@ -37,6 +40,7 @@ export type Purchase = {
   page: string | null
   time: string
   install?: Install
+  about?: RecommendationRow | null
 }
 
 /** The one address of this branch's marketplace door — the islands call it only through here. */
@@ -83,3 +87,11 @@ export function whyText(why: string): string {
     return ""
   }
 }
+
+/** The row indexes ordered by price; equal prices keep the list's own order in both directions (step 4-2). */
+export function priceOrder(prices: Money[], dir: 1 | -1): number[] {
+  return prices.map((_, i) => i).sort((a, b) => dir * (prices[a].amount - prices[b].amount) || a - b)
+}
+
+/** The author is Fractera itself — the filter «От Fractera» of the marketplace tables. */
+export const byFractera = (author?: string | null) => (author ?? "").trim().toLowerCase() === "fractera"

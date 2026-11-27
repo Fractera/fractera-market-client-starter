@@ -145,6 +145,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
+    "react-resizable-panels": "^4.25.1",
     "react-rnd": "^10.5.3",
     "recharts": "^3.8.0",
     "remark-gfm": "^4.0.1",

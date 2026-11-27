@@ -1,21 +1,23 @@
 "use client"
-// @local — the island «Рекомендации» (step 4-1, design): one table of every recommended starter on the node's `table-tools` — the store
-// search in its top card, the filters «Бесплатные» and «От Fractera», the price sort, rows per page and pages; each row with its three decisions.
-import type { ReactNode } from "react"
+// @local — the island «Рекомендованные элементы» (steps 4-1, 4-4): one table of every recommended starter on the node's `table-tools` —
+// the store search in its top card, the filters «Бесплатные» and «От Fractera», the price sort, rows per page and pages; each row with
+// its three decisions. A click on a name opens the starter's card beside the table (`table-detail`: Resizable, a drawer on a phone);
+// while it is open the table keeps only №, the starter, the price and the state — the card carries the rest.
+import { type ReactNode, useState } from "react"
+import { TableDetail } from "@/components/table/table-detail.client"
+import { StarterCard } from "../../../_components/starter-card.client"
 import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { EmptyState } from "@/components/ui/empty-state"
 import { Skeleton } from "@/components/ui/skeleton"
 import { TableCell, TableHead, TableRow } from "@/components/ui/table"
 import { TableTools } from "@/components/table/table-tools.client"
 import { tableUi } from "@/sections/table.i18n"
-import { money, when, whyText, type RecommendationRow, type TaskGroup } from "../../../_libs/market"
+import { byFractera, money, priceOrder, when, whyText, type RecommendationRow, type TaskGroup } from "../../../_libs/market"
 import type { RecommendationsWords } from "./words.i18n"
 
 export type Choice = "keep" | "delete" | "cart"
 type State = { kind: "loading" } | { kind: "unavailable" } | { kind: "ready"; groups: TaskGroup[] }
-
-const isFractera = (r: RecommendationRow) => (r.author ?? "").trim().toLowerCase() === "fractera"
 
 export function RecommendationsView({
   lang,
@@ -46,38 +48,85 @@ export function RecommendationsView({
     )
   }
 
-  // Equal prices keep the list's own order in both directions (step 4-2: «Цена ↓» swapped two free rows).
-  const priceOrder = (dir: 1 | -1) => rows.map((_, i) => i).sort((a, b) => dir * (rows[a].price.amount - rows[b].price.amount) || a - b)
+  return <RecommendationsTable lang={lang} words={words} search={search} rows={rows} onChoice={onChoice} />
+}
+
+function RecommendationsTable({
+  lang,
+  words,
+  search,
+  rows,
+  onChoice,
+}: {
+  lang: string
+  words: RecommendationsWords
+  search?: ReactNode
+  rows: RecommendationRow[]
+  onChoice?: (row: RecommendationRow, choice: Choice) => void
+}) {
+  const [openId, setOpenId] = useState<string | null>(null)
+  const chosen = rows.find((r) => r.id === openId) ?? null
+  const compact = chosen !== null
   const c = words.columns
 
-  return (
+  const table = (
     <TableTools
       search={search}
-      columns={7}
+      columns={compact ? 4 : 7}
       words={tableUi(lang)}
       texts={rows.map((r) => `${r.name} ${r.author ?? ""} ${r.task}`)}
       filters={[
         { label: words.onlyFree, match: rows.map((r) => !r.price.amount) },
-        { label: words.onlyFractera, match: rows.map(isFractera) },
+        { label: words.onlyFractera, match: rows.map((r) => byFractera(r.author)) },
       ]}
       sorts={[
-        { label: words.priceUp, order: priceOrder(1) },
-        { label: words.priceDown, order: priceOrder(-1) },
+        { label: words.priceUp, order: priceOrder(rows.map((r) => r.price), 1) },
+        { label: words.priceDown, order: priceOrder(rows.map((r) => r.price), -1) },
       ]}
       head={
         <TableRow data-block="rv3ac">
           <TableHead className="w-12 text-right">{c.n}</TableHead>
           <TableHead>{c.starter}</TableHead>
-          <TableHead>{c.author}</TableHead>
+          {!compact && <TableHead>{c.author}</TableHead>}
           <TableHead className="text-right">{c.price}</TableHead>
-          <TableHead>{c.task}</TableHead>
+          {!compact && <TableHead>{c.task}</TableHead>}
           <TableHead>{c.state}</TableHead>
-          <TableHead className="text-right">{c.actions}</TableHead>
+          {!compact && <TableHead className="text-right">{c.actions}</TableHead>}
         </TableRow>
       }
       rows={rows.map((r, i) => (
-        <Row key={r.id} n={i + 1} lang={lang} words={words} row={r} onChoice={onChoice} />
+        <Row
+          key={r.id}
+          n={i + 1}
+          lang={lang}
+          words={words}
+          row={r}
+          compact={compact}
+          chosen={r.id === openId}
+          onOpen={() => setOpenId(r.id === openId ? null : r.id)}
+          onChoice={onChoice}
+        />
       ))}
+    />
+  )
+
+  return (
+    <TableDetail
+      table={table}
+      open={chosen !== null}
+      onClose={() => setOpenId(null)}
+      title={chosen?.name ?? ""}
+      detail={
+        chosen && (
+          <StarterCard
+            lang={lang}
+            info={{ name: chosen.name, about: chosen }}
+            state={<RowState words={words} row={chosen} />}
+            actions={<RowActions words={words} row={chosen} onChoice={onChoice} />}
+            onClose={() => setOpenId(null)}
+          />
+        )
+      }
     />
   )
 }
@@ -87,75 +136,105 @@ function Row({
   lang,
   words,
   row,
+  compact,
+  chosen,
+  onOpen,
   onChoice,
 }: {
   n: number
   lang: string
   words: RecommendationsWords
   row: RecommendationRow
+  compact: boolean
+  chosen: boolean
+  onOpen: () => void
   onChoice?: (row: RecommendationRow, choice: Choice) => void
 }) {
   const why = whyText(row.why)
-  const inCart = row.status === "cart"
-  const off = !onChoice
   return (
-    <TableRow data-block="rv4ad" className="align-top">
+    <TableRow data-block="rv4ad" data-state={chosen ? "selected" : undefined} className="align-top">
       <TableCell className="text-right tabular-nums text-muted-foreground">{n}</TableCell>
       <TableCell className="min-w-56 max-w-sm whitespace-normal">
         <div data-block="rv5ae" className="flex flex-col gap-1">
           <div data-block="rv6af" className="flex flex-wrap items-center gap-1.5">
-            {row.page ? (
-              <a
-                href={row.page}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`${words.open}: ${row.name}`}
-                className={buttonVariants({ variant: "link", className: "h-auto p-0 font-semibold" })}
-              >
-                {row.name}
-              </a>
-            ) : (
-              <span className="font-semibold text-foreground">{row.name}</span>
-            )}
+            <Button
+              variant="link"
+              aria-expanded={chosen}
+              className="h-auto p-0 text-left font-semibold whitespace-normal"
+              onClick={onOpen}
+            >
+              {row.name}
+            </Button>
             {row.simulated && <Badge data-block="a5p7r" variant="outline">{words.simulated}</Badge>}
           </div>
-          {why && <p data-block="wva5a" className="line-clamp-2 text-xs text-pretty text-muted-foreground">{why}</p>}
+          {why && !compact && <p data-block="wva5a" className="line-clamp-2 text-xs text-pretty text-muted-foreground">{why}</p>}
         </div>
       </TableCell>
-      <TableCell className="text-muted-foreground">{row.author || words.noAuthor}</TableCell>
+      {!compact && <TableCell className="text-muted-foreground">{row.author || words.noAuthor}</TableCell>}
       <TableCell className="text-right font-semibold tabular-nums text-foreground">{money(row.price, lang, words.free)}</TableCell>
-      <TableCell className="min-w-48 max-w-xs whitespace-normal">
-        <div data-block="rv7ag" className="flex flex-col gap-1">
-          <span className="line-clamp-2 text-sm text-foreground">«{row.task}»</span>
-          <span className="text-xs text-muted-foreground">
-            {words.askedBy} <span className="font-mono">{row.element}</span> · {when(row.time, lang)}
-          </span>
-        </div>
-      </TableCell>
+      {!compact && (
+        <TableCell className="min-w-48 max-w-xs whitespace-normal">
+          <div data-block="rv7ag" className="flex flex-col gap-1">
+            <span className="line-clamp-2 text-sm text-foreground">«{row.task}»</span>
+            <span className="text-xs text-muted-foreground">
+              {words.askedBy} <span className="font-mono">{row.element}</span> · {when(row.time, lang)}
+            </span>
+          </div>
+        </TableCell>
+      )}
       <TableCell>
         <div data-block="rv8ah" className="flex flex-col items-start gap-1">
-          <Badge data-block="rv9ai" variant={inCart ? "default" : row.status === "kept" ? "secondary" : "outline"}>
-            {words.status[row.status]}
-          </Badge>
-          <span className="text-xs tabular-nums text-muted-foreground">
-            {words.usefulness} {Math.round(row.usefulness * 100)}%{row.bought && <> · {words.bought}</>}
-          </span>
+          <RowState words={words} row={row} />
         </div>
       </TableCell>
-      <TableCell>
-        <div data-block="izlw2" className="flex justify-end gap-1">
-          <Button size="sm" variant="ghost" disabled={off || row.status === "kept"} onClick={() => onChoice?.(row, "keep")}>
-            {words.keep}
-          </Button>
-          <Button size="sm" variant="ghost" disabled={off} onClick={() => onChoice?.(row, "delete")}>
-            {words.delete}
-          </Button>
-          <Button size="sm" variant={inCart ? "secondary" : "default"} disabled={off || inCart || row.bought} onClick={() => onChoice?.(row, "cart")}>
-            {inCart ? words.inCart : words.toCart}
-          </Button>
-        </div>
-      </TableCell>
+      {!compact && (
+        <TableCell>
+          <div data-block="izlw2" className="flex justify-end gap-1">
+            <RowActions words={words} row={row} onChoice={onChoice} />
+          </div>
+        </TableCell>
+      )}
     </TableRow>
+  )
+}
+
+function RowState({ words, row }: { words: RecommendationsWords; row: RecommendationRow }) {
+  const inCart = row.status === "cart"
+  return (
+    <>
+      <Badge data-block="rv9ai" variant={inCart ? "default" : row.status === "kept" ? "secondary" : "outline"}>
+        {words.status[row.status]}
+      </Badge>
+      <span className="text-xs tabular-nums text-muted-foreground">
+        {words.usefulness} {Math.round(row.usefulness * 100)}%{row.bought && <> · {words.bought}</>}
+      </span>
+    </>
+  )
+}
+
+function RowActions({
+  words,
+  row,
+  onChoice,
+}: {
+  words: RecommendationsWords
+  row: RecommendationRow
+  onChoice?: (row: RecommendationRow, choice: Choice) => void
+}) {
+  const inCart = row.status === "cart"
+  const off = !onChoice
+  return (
+    <>
+      <Button size="sm" variant="ghost" disabled={off || row.status === "kept"} onClick={() => onChoice?.(row, "keep")}>
+        {words.keep}
+      </Button>
+      <Button size="sm" variant="ghost" disabled={off} onClick={() => onChoice?.(row, "delete")}>
+        {words.delete}
+      </Button>
+      <Button size="sm" variant={inCart ? "secondary" : "default"} disabled={off || inCart || row.bought} onClick={() => onChoice?.(row, "cart")}>
+        {inCart ? words.inCart : words.toCart}
+      </Button>
+    </>
   )
 }
 

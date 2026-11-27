@@ -41,6 +41,44 @@
         "id": "table-tools",
         "version": "1.0.0"
       }
+    },
+    {
+      "id": "table-detail",
+      "kind": "composite",
+      "title": {
+        "en": "Table with the card of its row",
+        "ru": "Таблица с карточкой строки"
+      },
+      "version": "1.0.0",
+      "parts": [
+        "table-tools"
+      ],
+      "scope": "any",
+      "path": "components/table/table-detail.client.tsx",
+      "export": "TableDetail",
+      "also": [
+        "components/ui/resizable.tsx",
+        "components/ui/sheet.tsx"
+      ],
+      "what": {
+        "en": "A table beside the card of its chosen row: on a computer the page splits with Resizable (50/50, each side 30–70 %, a handle); on a phone the card slides in as a side drawer 90 % wide.",
+        "ru": "Таблица рядом с карточкой выбранной строки: на компьютере экран делится через Resizable (50/50, каждая сторона 30–70 %, ручка); на телефоне карточка выезжает боковым ящиком на 90 % ширины."
+      },
+      "how": "<TableDetail table={<TableTools …/>} detail={card} open onClose title /> — the card brings its own close.",
+      "words": {
+        "en": [
+          "master detail",
+          "split view",
+          "resizable panels",
+          "row details drawer"
+        ],
+        "ru": [
+          "таблица и карточка",
+          "разделённый экран",
+          "resizable",
+          "карточка строки"
+        ]
+      }
     }
   ]
 }
