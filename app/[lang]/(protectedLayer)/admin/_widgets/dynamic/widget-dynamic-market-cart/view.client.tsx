@@ -1,7 +1,7 @@
 "use client"
 // @local — the island «Корзина» (step 3-1, design): one line per starter, the total, «Получить» for a free cart. Payment of a paid
 // starter is hidden (the plan of step 3): a paid total shows one honest line instead of a button. The data and the actions arrive in
-// 3-3 / 4b (main pass); until then `state` is «loading» and the island shows its own skeleton.
+// its island (island.client.tsx); while `state` is «loading» the view shows its own skeleton.
 import { Button } from "@/components/ui/button"
 import { EmptyState } from "@/components/ui/empty-state"
 import { Separator } from "@/components/ui/separator"
@@ -71,6 +71,7 @@ export function CartView({
           )}
         </div>
       </footer>
+      {free && <p data-block="cq4nt" className="bg-muted/40 px-4 pb-4 text-xs text-pretty text-muted-foreground">{words.consent}</p>}
     </div>
   )
 }

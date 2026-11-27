@@ -892,6 +892,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/island.client.tsx",
         "components/ai-elements/prompt-input.tsx"
       ]
     },
@@ -1203,6 +1204,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-recommendations/island.client.tsx",
         "components/ai-elements/prompt-input.tsx"
       ]
     },

@@ -1,7 +1,7 @@
 "use client"
 // @local — the island «Покупки» (step 3-1, design): what the core confirmed as received, its version and author, «Установить ещё
 // раз» with no new payment. An honest empty state: nothing is shown as bought before the core says so (R-04). The data and the
-// action arrive in 3-4 / 4b (main pass); until then `state` is «loading» and the island shows its own skeleton.
+// action come from its island (island.client.tsx); while `state` is «loading» the view shows its own skeleton.
 import { Button, buttonVariants } from "@/components/ui/button"
 import { EmptyState } from "@/components/ui/empty-state"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -45,6 +45,12 @@ export function PurchasesView({
             <span className="text-xs tabular-nums text-muted-foreground">
               {words.version} {p.version} · {words.author} {p.author} · {words.got} {when(p.time, lang)}
             </span>
+            {p.install && (
+              <span className="text-xs text-muted-foreground">
+                {words.install[p.install.state] ?? p.install.state}
+                {p.install.reason && <> · {p.install.reason}</>}
+              </span>
+            )}
           </div>
           <Button size="sm" variant="outline" disabled={!onReinstall} onClick={() => onReinstall?.(p)}>
             {words.reinstall}

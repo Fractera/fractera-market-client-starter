@@ -389,7 +389,7 @@
             "/api/prototypes",
             "/api/settings/brief",
             "/[lang]/admin/api/settings/design",
-            "/[lang]/admin/api/settings/brief"
+            "/[lang]/admin/api/settings/brief", "/[lang]/admin/api/market"
           ],
           "a2aEndpoint": "/api/a2a",
           "a2aSkills": [

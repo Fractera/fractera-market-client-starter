@@ -4,12 +4,19 @@ import { handle as choice } from '../choice/choice.mjs'
 import { handle as cart } from '../cart/cart.mjs'
 import { handle as history } from '../history/history.mjs'
 import { handle as list } from '../recommendations/recommendations.mjs'
-import { use } from '../../../lib/market/market.mjs'
+import { use, checkout, purchases, reinstall } from '../../../lib/market/market.mjs'
 import { memoryRepo } from '../../../lib/market/repo.mjs'
-import { search } from '../../../lib/market/store.mjs'
+import { stubSearch as search } from '../../../lib/market/store.mjs'
 
 const sent = []
-use({ repo: memoryRepo(), search: async (e) => { sent.push(e); return search(e) } })
+const calls = []
+const fakeCore = {
+  purchase: async (slugs) => { calls.push(['purchase', slugs]); return { ok: true, state: 'paid', order: 'ord-000000000000000000000001', items: slugs.map((s) => ({ slug: s, name: s, tag: 'v0.1.0' })) } },
+  order: async (id) => { calls.push(['order', id]); return { ok: true, order: id, paid: true, items: [{ slug: 'fractera-test-post-starter', name: 'Тестовый пост', tag: 'v0.1.0' }] } },
+  install: async (id) => { calls.push(['install', id]); return { ok: true, state: 'installing' } },
+  installState: async () => ({ ok: true, state: 'none' }),
+}
+use({ repo: memoryRepo(), search: async (e) => { sent.push(e); return search(e) }, core: fakeCore })
 const node = { kind: 'node' }
 let failures = 0
 const check = (label, ok, got) => { if (!ok) failures++; console.log(`${ok ? 'ok  ' : 'FAIL'} ${label}${ok ? '' : `\n     got ${JSON.stringify(got)}`}`) }
@@ -44,6 +51,24 @@ const cl = await cart({ action: 'clear' }, node)
 check('clear empties the cart', cl.body.lines.length === 0, cl)
 const after = await list({ task: 'публиковать посты' }, node)
 check('after clear the row is «kept», not «cart»', after.body.tasks[0].rows[0].status === 'kept', after.body)
+
+// The free path (3-4b): the cart → purchase → order → install; «bought» only after the core says paid.
+await cart({ action: 'add', starter: 'fractera-test-post-starter' }, node)
+const g = await checkout({}, node)
+check('a free cart → paid, installed, order kept', g.status === 200 && g.body.state === 'paid' && calls.map((c) => c[0]).join() === 'purchase,order,install', { g, calls })
+const pu = await purchases({}, node)
+check('«Покупки» shows it with its version', pu.body.purchases.length === 1 && pu.body.purchases[0].version === 'v0.1.0', pu.body)
+const again = await cart({ action: 'add', starter: 'fractera-test-post-starter' }, node)
+check('a bought starter does not go to the cart again', again.status === 404 || again.status === 409, again)
+const ri = await reinstall({ starter: 'fractera-test-post-starter' }, node)
+check('install again: no purchase, same order', ri.status === 200 && calls.at(-1)[0] === 'install' && calls.filter((c) => c[0] === 'purchase').length === 1, calls)
+const empty = await checkout({}, node)
+check('an empty cart is refused', empty.status === 400, empty)
+const paidRepo = memoryRepo()
+await paidRepo.addCart({ slug: 'paid-starter', name: 'Paid', price_amount: 5, price_currency: 'USD', added_at: '' })
+use({ repo: paidRepo })
+const pd = await checkout({}, node)
+check('a paid cart: payment hidden, nothing sent', pd.status === 402 && calls.filter((c) => c[0] === 'purchase').length === 1, pd)
 
 if (failures) { console.error(`===TEST_RECOMMEND_FAILED=== ${failures}`); process.exit(1) }
 console.log('===TEST_RECOMMEND_OK===')

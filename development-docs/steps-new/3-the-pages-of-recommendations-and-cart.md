@@ -25,7 +25,7 @@ dynamic islands with a skeleton.
    per page from shadcn parts, every container with `data-block`. Check: `npm run eyes` screenshots of the three pages, phone and desktop.
    ✓ Done 2026-11-27: pages `admin/_pages/{recommendations,cart,purchases}`, islands `widget-dynamic-market-*`, shapes in
    `admin/_libs/market.ts`; prebuild RC=0; eyes at 1440 and 390 px on a temporary dev server — 200, skeletons drawn, no console errors.
-2. Pass: main — «Рекомендации»: rows by task with every E-01 field (element, starter, source, simulated mark, page link, price,
+2. Pass: main — «Рекомендации»: the architect's own search field (the leader's end-to-end check starts with «a free starter found»), rows by task with every E-01 field (element, starter, source, simulated mark, page link, price,
    usefulness, why, status, time); buttons «Оставить» · «Удалить» · «В корзину» through server actions. Check: delete → the row leaves;
    the next search on that task does not bring it back.
 3. Pass: main — «Корзина»: one line per starter, remove, clear, the total; «Оплатить» hidden for now; «уже куплен» refused.
@@ -36,6 +36,9 @@ dynamic islands with a skeleton.
 4b. Pass: main — the free path: «Получить» on a free starter in the cart → the core's `purchase` → `order` status → `install`; the row and
    «Покупки» show it bought only after the core says so (R-04). Payment of a paid starter stays hidden (not «оплата скоро» any more).
    Check: a free test starter goes the whole chain and a new element appears; «Установить ещё раз» asks no payment.
+   ✓ Built 2026-11-27 (one commit with 3-2…4b): branch door `admin/api/market` (architect session; POST refused on the showcase),
+   islands `island.client.tsx`, `lib/market` checkout · purchases · reinstall; `npm run test:recommend` 19/19 incl. the free path on a
+   fake core and «a paid cart: payment hidden, nothing sent». Live checks wait for the build.
 5. Pass: main — access: architect only. Check: the pages without a session → sign-in; with another role → refused.
 6. Pass: texts — the words of the three pages in ru and en.
 7. Close: full `npm run prebuild` RC=0, one build («Deploy» by the leader), the checks repeated live, `steps-done/3.md`, the links with

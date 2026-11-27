@@ -20,6 +20,7 @@ export type RecommendationRow = {
   bought: boolean
   status: "waiting" | "kept" | "cart"
   time: string
+  author?: string
 }
 
 export type TaskGroup = { task: string; rows: RecommendationRow[] }
@@ -27,7 +28,36 @@ export type TaskGroup = { task: string; rows: RecommendationRow[] }
 export type CartLine = { starter: string; name: string; price: Money; added: string }
 export type CartData = { lines: CartLine[]; total: Money }
 
-export type Purchase = { starter: string; name: string; version: string; author: string; page: string | null; time: string }
+export type Install = { state: string; reason: string | null }
+export type Purchase = {
+  starter: string
+  name: string
+  version: string
+  author: string
+  page: string | null
+  time: string
+  install?: Install
+}
+
+/** The one address of this branch's marketplace door — the islands call it only through here. */
+export const marketDoor = (lang: string) => `/${lang}/admin/api/market`
+
+export type DoorAnswer<T> = { ok: true; status: number; body: T } | { ok: false; status: number; reason: string }
+
+/** A call of the door: GET with `view`, or POST with an `op`. Never throws — a failure is an answer with its reason. */
+export async function marketCall<T>(lang: string, what: { view: string; op?: never } | { op: string; view?: never; [k: string]: unknown }): Promise<DoorAnswer<T>> {
+  try {
+    const r =
+      typeof what.view === "string"
+        ? await fetch(`${marketDoor(lang)}?view=${encodeURIComponent(what.view)}`, { cache: "no-store" })
+        : await fetch(marketDoor(lang), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(what) })
+    const body = (await r.json().catch(() => null)) as (T & { reason?: string; error?: string }) | null
+    if (r.ok && body) return { ok: true, status: r.status, body }
+    return { ok: false, status: r.status, reason: body?.reason ?? body?.error ?? `HTTP ${r.status}` }
+  } catch (e) {
+    return { ok: false, status: 0, reason: String((e as Error)?.message ?? e) }
+  }
+}
 
 export function money(p: Money, lang: string, free: string): string {
   if (!p.amount) return free
@@ -43,11 +73,11 @@ export function when(iso: string, lang: string): string {
   return Number.isNaN(d.getTime()) ? "" : d.toLocaleString(lang, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
 }
 
-/** The store's reason in one line: `whyFits` may carry `reason`, `text` or `summary`. */
+/** The store's reason in one line: `whyFits` carries `why` (search v2), older answers `reason`, `text` or `summary`. */
 export function whyText(why: string): string {
   try {
     const w = JSON.parse(why) as Record<string, unknown>
-    const t = w.reason ?? w.text ?? w.summary
+    const t = w.why ?? w.reason ?? w.text ?? w.summary
     return typeof t === "string" ? t : ""
   } catch {
     return ""

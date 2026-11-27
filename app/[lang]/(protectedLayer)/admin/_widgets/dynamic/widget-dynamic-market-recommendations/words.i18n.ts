@@ -17,6 +17,13 @@ export type RecommendationsWords = {
   empty: string
   emptyHint: string
   unavailable: string
+  searchLabel: string
+  searchPlaceholder: string
+  searchButton: string
+  searching: string
+  found: string
+  nothingNew: string
+  failed: string
 }
 
 const en: RecommendationsWords = {
@@ -37,6 +44,13 @@ const en: RecommendationsWords = {
   empty: "No recommendations yet",
   emptyHint: "They appear when an element of the project asks the store for a starter for its task.",
   unavailable: "The recommendations did not load. The page itself works — try again later.",
+  searchLabel: "Find a starter in the Fractera store",
+  searchPlaceholder: "What should the starter do? For example: a post by its title",
+  searchButton: "Find",
+  searching: "Searching…",
+  found: "New starters in the list:",
+  nothingNew: "The store has nothing new for this task.",
+  failed: "It did not work:",
 }
 
 const ru: RecommendationsWords = {
@@ -57,6 +71,13 @@ const ru: RecommendationsWords = {
   empty: "Рекомендаций пока нет",
   emptyHint: "Они появляются, когда элемент проекта просит у магазина стартер под свою задачу.",
   unavailable: "Рекомендации не загрузились. Сама страница работает — попробуйте позже.",
+  searchLabel: "Найти стартер в магазине Fractera",
+  searchPlaceholder: "Что должен уметь стартер? Например: пост по заголовку",
+  searchButton: "Найти",
+  searching: "Ищу…",
+  found: "Новых стартеров в списке:",
+  nothingNew: "У магазина нет ничего нового под эту задачу.",
+  failed: "Не получилось:",
 }
 
 export const recommendationsWords = (lang: string): RecommendationsWords => (lang === "ru" ? ru : en)

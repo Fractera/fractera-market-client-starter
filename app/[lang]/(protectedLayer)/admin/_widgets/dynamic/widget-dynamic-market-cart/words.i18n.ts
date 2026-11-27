@@ -11,6 +11,12 @@ export type CartWords = {
   empty: string
   emptyHint: string
   unavailable: string
+  getting: string
+  gotDone: string
+  pending: string
+  failed: string
+  consent: string
+  toPurchases: string
 }
 
 const en: CartWords = {
@@ -25,6 +31,12 @@ const en: CartWords = {
   empty: "The cart is empty",
   emptyHint: "Put a starter here from the recommendations.",
   unavailable: "The cart did not load. The page itself works — try again later.",
+  getting: "Getting…",
+  gotDone: "Received. The core is installing it — see «Purchases».",
+  pending: "The core has not confirmed it yet:",
+  failed: "It did not work:",
+  consent: "By pressing «Get» you agree to immediate delivery; no refund unless the law requires one.",
+  toPurchases: "Purchases",
 }
 
 const ru: CartWords = {
@@ -39,6 +51,12 @@ const ru: CartWords = {
   empty: "Корзина пуста",
   emptyHint: "Положите сюда стартер со страницы рекомендаций.",
   unavailable: "Корзина не загрузилась. Сама страница работает — попробуйте позже.",
+  getting: "Получаю…",
+  gotDone: "Получено. Ядро устанавливает стартер — смотрите «Покупки».",
+  pending: "Ядро ещё не подтвердило:",
+  failed: "Не получилось:",
+  consent: "Нажимая «Получить», вы соглашаетесь на немедленную поставку; возврата нет, если его не требует закон.",
+  toPurchases: "Покупки",
 }
 
 export const cartWords = (lang: string): CartWords => (lang === "ru" ? ru : en)
