@@ -1,14 +1,20 @@
 # Current step
 
-**Active step:** none — step 3 closed again 2026-11-27 with 4c (`development-docs/steps-done/3.md`).
+**Active step:** 4 — «Рекомендации» as a table with search, filters, sort and pages (`development-docs/steps-new/4-the-recommendations-as-a-table.md`).
+State: planned 2026-11-27; the stage-0 simulated rows deleted (data). Substep 4-1 is the design pass.
 
-**Last change:** 4c live on 3ec9ce8: the install sent by the core's contract; the core answers the order already installed as `mpso1`.
+Serves: S-03, S-04
+Stage: 1
 
-**Next action:** wait for the core's main agent (backlog: the already-installed answer, the sync with the core's orders, the texts pass).
+**Last change:** step 3 closed (f7637b1); step 4 planned.
+
+**Next action:** `npm run pass -- design` → substep 4-1: take `table-tools`, rebuild the recommendations island on it.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27 20:49 UTC, the architect (Telegram 1649, through the core's main agent): «Хорошо давай тогда чуть-чуть покрути дизайн этого инструмента? Во-первых нужно посмотреть как у нас выглядит стандартный инструменты для похожих выдачей. Возьмите примера дашь борт Projects обрати внимание что там есть пагинация там есть поиск по таблице это не тот же самый поиск который у тебя конечно же там должен стоять твой поиск ну и фильтры должны быть например бесплатные, например от Fractera а также должна быть сортировку по цене верх и вниз переработать дизайн этой страницы».
 
 - 2026-11-27, the core's main agent: «The contract: POST /api/node/market/install with JSON {order: "ord-…", slug: "<the starter's slug>"} (again: true only for «Установить ещё раз»); GET /api/node/market/install?order=…&slug=… → state running | installed (element) | failed (reason) | none … you then press «Получить»/«Установить» live once».
 
