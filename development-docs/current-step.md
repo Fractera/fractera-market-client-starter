@@ -10,7 +10,9 @@ Stage: 1
 
 **Now:** 6-1, 6-2 coded (65bc639); prebuild RC=0; market test and summary test OK. The core's live orders read (2 orders, both paid): after the deploy the reconcile adds the probe order ord-be889e7cd713d1165e6e3d20 (image starter, by «build») to «Купленные» — paid in the core, missing here (the old backlog line).
 
-**Next action:** the core deploys → eyes on the cart (consent, «Получить») at 1440 / 390; the core names the priced test starter → the live paid path (6-3).
+**Live (23:48 UTC, 65bc639 deployed):** the reconcile added ord-be889e7cd713d1165e6e3d20 («Тестовая картинка», v0.1.0) to «Купленные» — «Куплен» «Не установлен» with the page's own hint and «Установить»; summary `bought: { all: 2, notInstalled: 1 }`. The cart's eyes with a line are not possible yet: the store holds only the two test starters, both bought (four other searches returned nothing); no made-up line put into the real cart.
+
+**Next action:** the core brings the priced test starter's slug → it into the cart → eyes on the consent and «Оплатить» at 1440 / 390 (disabled until ticked) → the live paid path (6-3).
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
