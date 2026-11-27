@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "
 
 // The architect, 2026-11-27 (Telegram 1654, 1655): «по умолчанию … 50% но позволим делать диапазон от 30 до 70% … В мобильной версии
 // просто выезжает ящик с шириной экрана 90%»; «Этот же макет будем использовать и для корзины и для купленных».
+// The panel clips what passes its edge: `pr-px`/`py-px` keep the card's own border inside (the core saw its corner cut, 4-4).
 const WIDE = "(min-width: 768px)"
 
 function subscribe(onChange: () => void) {
@@ -48,7 +49,7 @@ export function TableDetail({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize="50%" minSize="30%" maxSize="70%">
-          <div data-block="tdr3d" className="min-w-0 pl-4">{detail}</div>
+          <div data-block="tdr3d" className="min-w-0 py-px pr-px pl-4">{detail}</div>
         </ResizablePanel>
       </ResizablePanelGroup>
     )

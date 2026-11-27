@@ -59,5 +59,9 @@ of the screen width. One layout for «Рекомендованные элеме�
    package `cn` removed — the known CLI defect); the part `table-detail` (components/table, card in parts.json); one
    `StarterCard` in `admin/_components/`; the three islands on it; while the card is open the table keeps the main columns
    only; the doors give `description` on a row and `about` (the latest recommendation) on cart lines and purchases.
-   Not given by the store search: a version before the purchase — the card shows a version only on «Купленные».
+   Corrected 2026-11-27: the store search DOES give the version (`validation.tag`) and its research report (`validation.report`) —
+   now kept on the row (columns `version`, `report`) and shown in the card; rows found before keep no version until found again.
+   After the core's look at 4-4 (deployed e9c2a1d): the card's right edge was clipped by the panel → `py-px pr-px` (table-detail
+   1.0.1); «Что умеет» stays in English — the store gives one description, in English only (checked on a raw search answer);
+   the cart's text still named «Покупки» → «Купленные».
 5. Close: commit, report to the core; the core deploys and looks.

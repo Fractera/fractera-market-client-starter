@@ -44,6 +44,8 @@ export function StarterCard({
   const page = info.page ?? a?.page ?? null
   const why = a ? whyText(a.why) : ""
   const can = a?.description?.trim() ?? ""
+  const version = info.version || a?.version || ""
+  const report = a?.report ?? null
 
   return (
     <Card data-block="scd1a" className="gap-5">
@@ -54,7 +56,7 @@ export function StarterCard({
             {w.author} <span className="font-medium text-foreground">{author || "—"}</span>
           </span>
           {a?.source && <span>· {w.source} {a.source}</span>}
-          {info.version && <span className="tabular-nums">· {w.version} {info.version}</span>}
+          {version && <span className="tabular-nums">· {w.version} {version}</span>}
           {a?.simulated && <Badge data-block="v347s" variant="outline">{w.simulated}</Badge>}
         </CardDescription>
         <CardAction>
@@ -106,13 +108,18 @@ export function StarterCard({
       </CardContent>
 
       <CardFooter data-block="scdbk" className="flex flex-wrap items-center justify-between gap-2">
-        {page ? (
-          <a href={page} target="_blank" rel="noreferrer" className={buttonVariants({ variant: "link", className: "h-auto p-0" })}>
-            {w.storePage} ↗
-          </a>
-        ) : (
-          <span />
-        )}
+        <div data-block="scdlk" className="flex flex-col items-start gap-1">
+          {page && (
+            <a href={page} target="_blank" rel="noreferrer" className={buttonVariants({ variant: "link", className: "h-auto p-0" })}>
+              {w.storePage} ↗
+            </a>
+          )}
+          {report && (
+            <a href={report} target="_blank" rel="noreferrer" className={buttonVariants({ variant: "link", className: "h-auto p-0" })}>
+              {w.report} ↗
+            </a>
+          )}
+        </div>
         {actions && <div data-block="scdcl" className="flex flex-wrap items-center gap-1">{actions}</div>}
       </CardFooter>
     </Card>

@@ -387,7 +387,7 @@
         "en": "Table with the card of its row",
         "ru": "Таблица с карточкой строки"
       },
-      "version": "1.0.0",
+      "version": "1.0.1",
       "parts": [
         "table-tools"
       ],

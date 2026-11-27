@@ -14,6 +14,7 @@ export type StarterCardWords = {
   task: string
   askedBy: string
   storePage: string
+  report: string
 }
 
 const en: StarterCardWords = {
@@ -31,6 +32,7 @@ const en: StarterCardWords = {
   task: "The task that asked for it",
   askedBy: "asked by",
   storePage: "The starter’s page in the store",
+  report: "The store’s research report",
 }
 
 const ru: StarterCardWords = {
@@ -48,6 +50,7 @@ const ru: StarterCardWords = {
   task: "Задача, для которой подобран",
   askedBy: "просит",
   storePage: "Страница стартера в магазине",
+  report: "Исследовательский отчёт магазина",
 }
 
 export const starterCardWords = (lang: string): StarterCardWords => (lang === "ru" ? ru : en)

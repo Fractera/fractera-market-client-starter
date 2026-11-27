@@ -23,6 +23,9 @@ export type RecommendationRow = {
   author?: string
   /** The store's description of the starter: what it can do. */
   description?: string
+  /** The version the store researched, and its research report. */
+  version?: string
+  report?: string | null
 }
 
 export type TaskGroup = { task: string; rows: RecommendationRow[] }
