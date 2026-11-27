@@ -2,10 +2,13 @@
 // @local — the island «Корзина» (steps 3-1, 4-4): one table of the starters in the cart on the node's `table-tools` (the row search,
 // the filters «Бесплатные» and «От Fractera», the price sort, pages), the total and «Получить» for a free cart under it. A click on a
 // name opens the starter's card beside the table (`table-detail`: Resizable, a drawer on a phone) — the same layout as the
-// recommendations (the architect, Telegram 1655). Payment of a paid starter stays hidden (step 3): a paid total shows one honest line.
+// recommendations (the architect, Telegram 1655). Step 6: one button — «Получить» (free) or «Оплатить» (priced) — under the consent,
+// unchecked at the start; a priced cart becomes «Ждём оплату» (the payer's window is the core's), its lines locked until the check.
 import { useEffect, useState } from "react"
 import { useQueryParam } from "../../../_libs/deep-link"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Field, FieldLabel } from "@/components/ui/field"
 import { EmptyState } from "@/components/ui/empty-state"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -26,18 +29,20 @@ export function CartView({
   onRemove,
   onClear,
   onGet,
+  onCheck,
 }: {
   lang: string
   words: CartWords
   state?: State
   onRemove?: (line: CartLine) => void
   onClear?: () => void
-  onGet?: () => void
+  onGet?: (consent: boolean) => void
+  onCheck?: (order: string) => void
 }) {
   if (state.kind === "loading") return <CartSkeleton label={words.loading} />
   if (state.kind === "unavailable") return <CartSkeleton label={words.unavailable} />
   if (state.cart.lines.length === 0) return <EmptyState data-block="shdna" title={words.empty} hint={words.emptyHint} />
-  return <CartTable lang={lang} words={words} cart={state.cart} onRemove={onRemove} onClear={onClear} onGet={onGet} />
+  return <CartTable lang={lang} words={words} cart={state.cart} onRemove={onRemove} onClear={onClear} onGet={onGet} onCheck={onCheck} />
 }
 
 function CartTable({
@@ -47,22 +52,26 @@ function CartTable({
   onRemove,
   onClear,
   onGet,
+  onCheck,
 }: {
   lang: string
   words: CartWords
   cart: CartData
   onRemove?: (line: CartLine) => void
   onClear?: () => void
-  onGet?: () => void
+  onGet?: (consent: boolean) => void
+  onCheck?: (order: string) => void
 }) {
+  const { lines, total, awaiting, unpaid } = cart
   const [openId, setOpenId] = useState<string | null>(null)
+  // The architect's rule, ticked by the person each time: unchecked at the start, the button waits for it (step 6).
+  const [agreed, setAgreed] = useState(false)
   // Step 5: `?open=<slug>` opens that starter's card.
   const [wantOpen] = useQueryParam("open")
   useEffect(() => {
     if (wantOpen && lines.some((x) => x.starter === wantOpen)) setOpenId(wantOpen)
     // Once per link, not per refresh of the list
   }, [wantOpen])
-  const { lines, total } = cart
   const chosen = lines.find((l) => l.starter === openId) ?? null
   const compact = chosen !== null
   const free = total.amount === 0
@@ -111,7 +120,7 @@ function CartTable({
             {!compact && <TableCell className="text-xs tabular-nums text-muted-foreground">{when(l.added, lang)}</TableCell>}
             {!compact && (
               <TableCell className="text-right">
-                <Button size="sm" variant="ghost" disabled={!onRemove} onClick={() => onRemove?.(l)}>
+                <Button size="sm" variant="ghost" disabled={!onRemove || l.locked} onClick={() => onRemove?.(l)}>
                   {words.remove}
                 </Button>
               </TableCell>
@@ -120,27 +129,48 @@ function CartTable({
         ))}
       />
 
-      <div data-block="kw7o6" className="flex flex-col gap-3 rounded-lg border border-border bg-muted/40 p-4">
-        <div data-block="ct2tb" className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      {awaiting ? (
+        <div data-block="ctaw1" className="flex flex-col gap-3 rounded-lg border border-primary/40 bg-primary/5 p-4" data-cart-state="awaiting">
+          <div data-block="ctaw2" className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div data-block="ctaw3" className="flex flex-col gap-1">
+              <span className="text-base font-semibold text-foreground">{words.awaiting}</span>
+              <span className="text-xs tabular-nums text-muted-foreground">
+                {words.order} <span className="font-mono">{awaiting.order}</span> · {words.total} {money(awaiting.total, lang, words.free)}
+              </span>
+            </div>
+            <Button variant="outline" disabled={!onCheck} onClick={() => onCheck?.(awaiting.order)}>
+              {words.check}
+            </Button>
+          </div>
+          <p data-block="ctaw4" className="text-xs text-pretty text-muted-foreground">{words.awaitingHint}</p>
+        </div>
+      ) : (
+        <div data-block="kw7o6" className="flex flex-col gap-4 rounded-lg border border-border bg-muted/40 p-4" data-cart-state="open">
+          {unpaid && (
+            <p data-block="ctun1" className="text-sm text-pretty text-foreground">
+              {words.unpaid} <span className="font-mono text-xs text-muted-foreground">{unpaid.order}</span>
+            </p>
+          )}
           <div data-block="gmcku" className="flex items-baseline gap-3">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{words.total}</span>
             <span className="text-2xl font-semibold tabular-nums text-foreground">{money(total, lang, words.free)}</span>
           </div>
-          <div data-block="z5neu" className="flex flex-wrap items-center gap-2">
+          <Field data-block="ctcs1" orientation="horizontal" className="items-start">
+            <Checkbox id="cart-consent" checked={agreed} onCheckedChange={(v) => setAgreed(Boolean(v))} />
+            <FieldLabel htmlFor="cart-consent" className="text-sm leading-snug font-normal text-pretty">
+              {words.consent}
+            </FieldLabel>
+          </Field>
+          <div data-block="z5neu" className="flex flex-wrap items-center justify-end gap-2">
             <Button variant="ghost" disabled={!onClear} onClick={() => onClear?.()}>
               {words.clear}
             </Button>
-            {free ? (
-              <Button size="lg" disabled={!onGet} onClick={() => onGet?.()}>
-                {words.get}
-              </Button>
-            ) : (
-              <span className="text-sm text-muted-foreground">{words.paidClosed}</span>
-            )}
+            <Button size="lg" disabled={!onGet || !agreed} onClick={() => onGet?.(agreed)}>
+              {free ? words.get : words.pay}
+            </Button>
           </div>
         </div>
-        {free && <p data-block="cq4nt" className="text-xs text-pretty text-muted-foreground">{words.consent}</p>}
-      </div>
+      )}
     </div>
   )
 
@@ -157,7 +187,7 @@ function CartTable({
             info={{ name: chosen.name, price: chosen.price, about: chosen.about }}
             state={<span className="text-xs tabular-nums text-muted-foreground">{words.added} {when(chosen.added, lang)}</span>}
             actions={
-              <Button size="sm" variant="ghost" disabled={!onRemove} onClick={() => onRemove?.(chosen)}>
+              <Button size="sm" variant="ghost" disabled={!onRemove || chosen.locked} onClick={() => onRemove?.(chosen)}>
                 {words.remove}
               </Button>
             }

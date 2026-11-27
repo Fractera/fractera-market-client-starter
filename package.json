@@ -105,7 +105,8 @@
     "test:history": "node app/api/history/history.test.mjs",
     "test:choice": "node app/api/choice/choice.test.mjs",
     "test:cart": "node app/api/cart/cart.test.mjs",
-    "test:summary": "node app/api/summary/summary.test.mjs"
+    "test:summary": "node app/api/summary/summary.test.mjs",
+    "market:check": "node --env-file-if-exists=.env.local scripts/market-check.mjs"
   },
   "dependencies": {
     "@a2a-js/sdk": "1.3.0",

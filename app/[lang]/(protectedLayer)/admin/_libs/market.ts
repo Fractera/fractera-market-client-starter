@@ -31,8 +31,14 @@ export type RecommendationRow = {
 export type TaskGroup = { task: string; rows: RecommendationRow[] }
 
 /** `about` — what the store said of the starter, from its latest recommendation (the card, step 4-4). */
-export type CartLine = { starter: string; name: string; price: Money; added: string; about?: RecommendationRow | null }
-export type CartData = { lines: CartLine[]; total: Money }
+export type CartLine = { starter: string; name: string; price: Money; added: string; about?: RecommendationRow | null; locked?: boolean }
+/** Step 6: `awaiting` — the order waits for the payer (its lines locked); `unpaid` — the last check found no payment (the cart unlocked). */
+export type CartData = {
+  lines: CartLine[]
+  total: Money
+  awaiting?: { order: string; total: Money; at: string } | null
+  unpaid?: { order: string; at: string } | null
+}
 
 export type Install = { state: string; reason: string | null; element?: { id: string; address: string | null } | null }
 export type Purchase = {

@@ -52,11 +52,13 @@ export async function POST(req: NextRequest) {
       case "search": return out(await market.recommend({ element: "market", task: input.task, lang }, PERSON))
       case "choice": return out(await market.choice({ row: input.row, action: input.action }, PERSON))
       case "cart": return out(await market.cart({ action: input.action, starter: input.starter }, PERSON))
-      case "get": return out(await market.checkout({}, PERSON))
+      // Step 6: the consent ticked on the page goes with the purchase; «check» asks the core whether the waiting order is paid.
+      case "get": return out(await market.checkout({ consent: input.consent === true, lang }, PERSON))
+      case "check": return out(await market.confirmPayment({ order: input.order }, PERSON))
       case "reinstall": return out(await market.reinstall({ starter: input.starter }, PERSON))
     }
   } catch (e) {
     return out({ status: 503, body: { error: "unavailable", reason: String((e as Error)?.message ?? e).slice(0, 200) } })
   }
-  return out({ status: 400, body: { error: "bad_request", reason: "op: search | choice | cart | get | reinstall" } })
+  return out({ status: 400, body: { error: "bad_request", reason: "op: search | choice | cart | get | check | reinstall" } })
 }

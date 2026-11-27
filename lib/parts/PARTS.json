@@ -752,6 +752,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-cart/view.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/row.client.tsx",
         "components/table/table-tools.client.tsx"
       ]
@@ -913,7 +914,8 @@
         ]
       },
       "usedBy": [
-        "app/[lang]/(protectedLayer)/admin/_components/design-editors/design-brief.client.tsx"
+        "app/[lang]/(protectedLayer)/admin/_components/design-editors/design-brief.client.tsx",
+        "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-market-cart/view.client.tsx"
       ]
     },
     {

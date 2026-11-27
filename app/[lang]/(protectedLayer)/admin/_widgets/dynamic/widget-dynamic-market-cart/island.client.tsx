@@ -1,6 +1,6 @@
 "use client"
-// @local — the live part of «Корзина» (steps 3-3, 3-4b): the lines from the branch door, remove, clear and «Получить» for a free
-// cart. «Получено» is said only when the door answers `paid` from the core (R-04); a paid cart never reaches the core from here.
+// @local — the live part of «Корзина» (steps 3-3, 3-4b, 6): the lines from the branch door, remove, clear, «Получить» / «Оплатить»
+// with the consent, «Проверить оплату» for a waiting order. «Получено» and «Оплачено» only when the door answers `paid` from the core (R-04).
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
@@ -29,9 +29,15 @@ export function CartIsland({ lang, words }: { lang: string; words: CartWords }) 
     const a = await marketCall<{ state?: string; order?: string }>(lang, what)
     setBusy(false)
     if (!a.ok) toast.error(`${words.failed} ${a.reason}`)
-    else if (what.op === "get") {
-      if (a.body.state === "paid") toast.success(words.gotDone, { action: { label: words.toPurchases, onClick: () => router.push(`/${lang}/admin/purchases`) } })
-      else toast.message(`${words.pending} ${a.body.state ?? ""}`)
+    else if (what.op === "get" || what.op === "check") {
+      // «Получено» / «Оплачено» only on the core's word that the order is paid (R-04).
+      const s = a.body.state
+      const toBought = { action: { label: words.toPurchases, onClick: () => router.push(`/${lang}/admin/purchases`) } }
+      if (s === "paid") toast.success(what.op === "check" ? words.paidDone : words.gotDone, toBought)
+      else if (s === "already-ordered") toast.success(words.alreadyBought, toBought)
+      else if (s === "awaiting-payer") toast.message(words.awaiting)
+      else if (s === "unpaid") toast.message(words.stillUnpaid)
+      else toast.message(`${words.pending} ${s ?? ""}`)
     }
     await load()
   }
@@ -43,7 +49,8 @@ export function CartIsland({ lang, words }: { lang: string; words: CartWords }) 
       state={state}
       onRemove={busy ? undefined : (l: CartLine) => act({ op: "cart", action: "remove", starter: l.starter })}
       onClear={busy ? undefined : () => act({ op: "cart", action: "clear" })}
-      onGet={busy ? undefined : () => act({ op: "get" })}
+      onGet={busy ? undefined : (consent: boolean) => act({ op: "get", consent })}
+      onCheck={busy ? undefined : (order: string) => act({ op: "check", order })}
     />
   )
 }
