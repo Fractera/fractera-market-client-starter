@@ -22,7 +22,7 @@ const en: PurchasesWords = {
   empty: "Nothing bought yet",
   emptyHint: "A starter appears here only after the core of the project confirms it was received.",
   unavailable: "The purchases did not load. The page itself works — try again later.",
-  install: { none: "not installed yet", started: "installing", installing: "installing", installed: "installed", done: "installed", failed: "install failed" },
+  install: { none: "not installed yet", running: "installing — reload the page to see the result", started: "installing", installing: "installing", installed: "installed as element", done: "installed", failed: "install failed" },
   installStarted: "The core started the install again — no new payment.",
   failed: "It did not work:",
 }
@@ -36,7 +36,7 @@ const ru: PurchasesWords = {
   empty: "Покупок пока нет",
   emptyHint: "Стартер появится здесь только после того, как ядро проекта подтвердит, что он получен.",
   unavailable: "Покупки не загрузились. Сама страница работает — попробуйте позже.",
-  install: { none: "ещё не установлен", started: "устанавливается", installing: "устанавливается", installed: "установлен", done: "установлен", failed: "установка не удалась" },
+  install: { none: "ещё не установлен", running: "устанавливается — обновите страницу, чтобы увидеть итог", started: "устанавливается", installing: "устанавливается", installed: "установлен как элемент", done: "установлен", failed: "установка не удалась" },
   installStarted: "Ядро снова начало установку — без новой оплаты.",
   failed: "Не получилось:",
 }
