@@ -1,6 +1,6 @@
 # Current step
 
-**Active step:** none — step 2 closed (`steps-done/2.md`); stage 0 is built and checked on a temporary server, waiting for «Deploy».
+**Active step:** none — step 2 closed (`steps-done/2.md`); stage 0 deployed and checked live. Step 3 waits in the intake.
 
 **Last change:** stage 0 deployed by the core's main agent 14:43 and checked live on 24697 (401 without key; history 0 → 1; cart
 twice → one line). Step 3 planned, held in the intake. Before: step 2 — the doors recommend · recommendations · choice · cart · history, the data in the data element, the v2 stub.

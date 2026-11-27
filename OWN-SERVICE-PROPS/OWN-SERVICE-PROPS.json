@@ -28,12 +28,11 @@
   },
   "development": {
     "steps": [
-      "1",
-      "2"
+      "3"
     ],
-    "current": "2",
+    "current": "3",
     "state": "waiting",
-    "next": "the yes for step 2 (stage 0: list, choices, history against the stub)",
-    "at": "2026-11-27T12:05:04.550Z"
+    "next": "the architect's word on stage 0, then the yes for step 3",
+    "at": "2026-11-27T14:46:32.353Z"
   }
 }
