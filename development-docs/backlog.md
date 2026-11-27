@@ -14,7 +14,7 @@ Format, one line per item, address first:
 ```
 - `<path or page>` — <what is missing> · <why it is not done; the person's word if any> · <date>
 ```
-- `/ru/admin/purchases` — the install of «Тестовый пост — стартер» refused by the core («the starter is not in this order»: order ord-9adb22… is outside the core's records); no element installed through the pages yet · the core's install door, not this element · 2026-11-27
+- `/ru/admin/purchases` — an order the core already installed (`already installed here: mpso1`) is shown as «установка не удалась», not «установлен как элемент mpso1» · the core answers it as `failed` with a text reason; ask the core for `state: installed, element` in that case · 2026-11-27
 - `/ru/admin/purchases` — the probe order ord-be889e7cd713d1165e6e3d20 (image starter) is paid in the core but not in «Покупки» · «Покупки» list only what the pages got; a sync with the core's orders not built · 2026-11-27
 - `/ru/admin/recommendations` — stage-0 stub rows («симуляция», tasks «картинки для соцсетей», «картинки для постов в блог») still in the list · data, the architect may delete them · 2026-11-27
 - `admin/_widgets/dynamic/widget-dynamic-market-*` — the texts pass (step 3, substep 6) not run · the words exist in ru and en · 2026-11-27

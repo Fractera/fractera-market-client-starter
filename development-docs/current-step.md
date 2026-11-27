@@ -1,15 +1,10 @@
 # Current step
 
-**Active step:** 3 — reopened 2026-11-27 for substep 4c (`development-docs/steps-new/3-the-pages-of-recommendations-and-cart.md`).
-State: 4c built, waiting for the deploy — the install call sent no slug (cause of «the starter is not in this order»). Now: POST
-install {order, slug} per bought item, `again: true` only when that purchase was installed before (a first install after a failed
-one is not «again»); «Покупки» ask GET install?order=&slug= once per page read while an install runs. test:recommend 25/25 incl.
-the exact wire bodies; prebuild RC=0. Live next: «Установить ещё раз» on «Тестовый пост — стартер» once → a new element.
+**Active step:** none — step 3 closed again 2026-11-27 with 4c (`development-docs/steps-done/3.md`).
 
-**Last change:** step 3 closed; commits 75c3eb4 (3-1), eb77e70 (3-2…4b), b9d3d1e (already-ordered), live on b9d3d1e.
+**Last change:** 4c live on 3ec9ce8: the install sent by the core's contract; the core answers the order already installed as `mpso1`.
 
-**Next action:** wait for the core's main agent: the install refusal for order ord-9adb22… is on the core's side (backlog.md); the
-paid path (payer window) and the texts pass are not started.
+**Next action:** wait for the core's main agent (backlog: the already-installed answer, the sync with the core's orders, the texts pass).
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
