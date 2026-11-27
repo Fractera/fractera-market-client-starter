@@ -92,6 +92,11 @@ const ALLOWED = new Map([
   ['app/api/shell/[lang]/route.ts', 'шапка и подвал для служб узла'],
   ['app/api/users/[id]/route.ts', 'одна учётная запись'],
   ['app/api/users/route.ts', 'учётные записи'],
+  ['app/api/recommend/route.ts', 'door recommend: Search the store for a task and list recommended starters (door:add, node step 548-16)'],
+  ['app/api/recommendations/route.ts', 'door recommendations: List the recommended starters by task with their status (door:add, node step 548-16)'],
+  ['app/api/history/route.ts', 'door history: The history of choices by task: rejected, kept, bought (door:add, node step 548-16)'],
+  ['app/api/choice/route.ts', 'door choice: Keep, delete or put a recommended starter in the cart (door:add, node step 548-16)'],
+  ['app/api/cart/route.ts', 'door cart: The cart: one copy of each starter, add, remove, clear (door:add, node step 548-16)'],
 ])
 
 const found = []

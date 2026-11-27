@@ -3,8 +3,8 @@
   "name": "Маркетплейс",
   "shortDescription": "The marketplace client of this project: it keeps the recommendations of starters from the Fractera store for the person's and the elements' tasks, the cart with one copy of each starter and the history of choices, and passes the purchase and the install to the core. (Preliminary — written by the core's main agent at birth on 2026-11-27, from fractera-native-item-starter v0.1.87; the element's agent refines it.)",
   "longDescription": "",
-  "accepts": "",
-  "returns": "",
+  "accepts": "A task in plain words from an element or the person (POST /api/recommend { element, task, lang }); the person’s choice on a row (keep, delete, cart); cart actions (add, remove, clear).",
+  "returns": "Recommended starters of the Fractera store per task, «recommended, waiting for the person’s decision» with their page links; the list by task, the cart with one copy of each starter and its total, the history of choices (rejected, kept, bought).",
   "designSkill": "impeccable",
   "isFracteraArchitecture": true,
   "framework": "next",
@@ -28,11 +28,12 @@
   },
   "development": {
     "steps": [
-      "1"
+      "1",
+      "2"
     ],
-    "current": "1",
-    "state": "planning",
-    "next": "analyse the product quiz; enough - plan step 2, not enough - questions to the main agent",
-    "at": "2026-11-27T11:31:16.658Z"
+    "current": "2",
+    "state": "waiting",
+    "next": "the yes for step 2 (stage 0: list, choices, history against the stub)",
+    "at": "2026-11-27T12:05:04.550Z"
   }
 }

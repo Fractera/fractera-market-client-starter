@@ -121,6 +121,185 @@
               "callers": [
                 "*"
               ]
+            },
+            {
+              "skill": "recommend",
+              "protocol": "http",
+              "method": "POST",
+              "path": "/api/recommend",
+              "key": "node-key",
+              "input": {
+                "element": "blog",
+                "task": "публиковать посты",
+                "lang": "ru"
+              },
+              "output": {
+                "state": "recommended-awaiting-decision",
+                "says": "рекомендовано, ждёт решения человека",
+                "task": "публиковать посты",
+                "element": "blog",
+                "added": 2,
+                "store": {
+                  "mode": "stub",
+                  "summary": "stub: 2 item(s); history received: 0"
+                },
+                "rows": [
+                  {
+                    "id": "<uuid>",
+                    "name": "Тестовый пост",
+                    "page": "stub://store/starters/fractera-test-post-starter",
+                    "price": {
+                      "amount": 0,
+                      "currency": "USD"
+                    },
+                    "status": "waiting",
+                    "simulated": true
+                  }
+                ]
+              },
+              "errors": {
+                "400": "bad_request",
+                "401": "bad_key",
+                "502": "store_unavailable"
+              },
+              "callers": [
+                "*"
+              ]
+            },
+            {
+              "skill": "recommendations",
+              "protocol": "http",
+              "method": "GET",
+              "path": "/api/recommendations",
+              "key": "node-key",
+              "input": {
+                "task": "публиковать посты"
+              },
+              "output": {
+                "tasks": [
+                  {
+                    "task": "публиковать посты",
+                    "rows": [
+                      {
+                        "id": "<uuid>",
+                        "task": "публиковать посты",
+                        "element": "blog",
+                        "starter": "fractera-test-post-starter",
+                        "name": "Тестовый пост",
+                        "source": "fractera",
+                        "simulated": true,
+                        "page": "stub://store/starters/fractera-test-post-starter",
+                        "price": {
+                          "amount": 0,
+                          "currency": "USD"
+                        },
+                        "usefulness": 0.5,
+                        "why": "{…}",
+                        "bought": false,
+                        "status": "waiting",
+                        "time": "2026-11-27T13:00:00.000Z"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "errors": {
+                "401": "bad_key"
+              },
+              "callers": [
+                "*"
+              ]
+            },
+            {
+              "skill": "history",
+              "protocol": "http",
+              "method": "GET",
+              "path": "/api/history",
+              "key": "node-key",
+              "input": {
+                "task": "публиковать посты"
+              },
+              "output": {
+                "history": [
+                  {
+                    "task": "публиковать посты",
+                    "starter": "fractera-test-image-starter",
+                    "action": "rejected",
+                    "time": "2026-11-27T13:00:00.000Z"
+                  }
+                ]
+              },
+              "errors": {
+                "401": "bad_key"
+              },
+              "callers": [
+                "*"
+              ]
+            },
+            {
+              "skill": "choice",
+              "protocol": "http",
+              "method": "POST",
+              "path": "/api/choice",
+              "key": "node-key",
+              "input": {
+                "row": "<uuid>",
+                "action": "delete"
+              },
+              "output": {
+                "row": {
+                  "id": "<uuid>",
+                  "status": "deleted"
+                }
+              },
+              "errors": {
+                "400": "bad_request",
+                "401": "bad_key",
+                "403": "person_only",
+                "404": "not_found",
+                "409": "already_bought"
+              },
+              "callers": [
+                "*"
+              ]
+            },
+            {
+              "skill": "cart",
+              "protocol": "http",
+              "method": "POST",
+              "path": "/api/cart",
+              "key": "node-key",
+              "input": {
+                "action": "add",
+                "starter": "fractera-test-post-starter"
+              },
+              "output": {
+                "lines": [
+                  {
+                    "starter": "fractera-test-post-starter",
+                    "name": "Тестовый пост",
+                    "price": {
+                      "amount": 0,
+                      "currency": "USD"
+                    },
+                    "added": "2026-11-27T13:00:00.000Z"
+                  }
+                ],
+                "total": {
+                  "amount": 0,
+                  "currency": "USD"
+                }
+              },
+              "errors": {
+                "400": "bad_request",
+                "401": "bad_key",
+                "403": "person_only",
+                "404": "not_found",
+                "409": "already_bought"
+              },
+              "callers": [
+                "*"
+              ]
             }
           ],
           "consumes": [
@@ -361,6 +540,105 @@
       ],
       "examples": [
         "Save this hero section for everyone"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "recommend",
+      "name": "Search the store for a task and list recommended starters",
+      "description": "Search the store for a task and list recommended starters. Not over A2A: an HTTP door — POST /api/recommend (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door",
+        "marketplace",
+        "starter",
+        "recommendation"
+      ],
+      "examples": [
+        "найди стартер для задачи",
+        "recommend a starter for a task"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "recommendations",
+      "name": "List the recommended starters by task with their status",
+      "description": "List the recommended starters by task with their status. Not over A2A: an HTTP door — GET /api/recommendations (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door",
+        "marketplace",
+        "recommendation"
+      ],
+      "examples": [
+        "какие стартеры рекомендованы"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "history",
+      "name": "The history of choices by task: rejected, kept, bought",
+      "description": "The history of choices by task: rejected, kept, bought. Not over A2A: an HTTP door — GET /api/history (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door",
+        "marketplace",
+        "history"
+      ],
+      "examples": [
+        "история выбора по задаче"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "choice",
+      "name": "Keep, delete or put a recommended starter in the cart",
+      "description": "Keep, delete or put a recommended starter in the cart. Not over A2A: an HTTP door — POST /api/choice (extension https://fractera.ai/a2a/ext/node/v1, «doors») The person’s act: a neighbour gets 403.",
+      "tags": [
+        "http-door",
+        "marketplace",
+        "choice"
+      ],
+      "examples": [
+        "удалить рекомендацию",
+        "положить стартер в корзину"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "cart",
+      "name": "The cart: one copy of each starter, add, remove, clear",
+      "description": "The cart: one copy of each starter — add, remove, clear (GET for the lines and the total); the person’s act, a neighbour gets 403. Not over A2A: an HTTP door — POST /api/cart (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door",
+        "marketplace",
+        "cart"
+      ],
+      "examples": [
+        "что в корзине",
+        "очистить корзину"
       ],
       "inputModes": [
         "application/json"

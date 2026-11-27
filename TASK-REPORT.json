@@ -1,7 +1,1 @@
-{
-  "task": "",
-  "done": [],
-  "check": [],
-  "path": "",
-  "anchor": ""
-}
+{ "task": "Stage 0 of the marketplace client: recommendations, choices and history against the store stub", "done": ["doors POST /api/recommend, GET /api/recommendations, POST /api/choice, POST|GET /api/cart, GET /api/history", "rows in the data element: recommendations, cart, history", "store search v2 stub with two test starters"], "check": ["POST /api/recommend without X-Node-Key → 401", "two searches on one task: the second answer says «history received: 1»"], "path": "/api/recommendations", "anchor": "" }
