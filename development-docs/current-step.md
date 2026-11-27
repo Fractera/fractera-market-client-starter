@@ -8,7 +8,7 @@ Stage: 1
 
 **Last change:** step 4 closed (b89a686), 4-5 (ec1b143); research af90fe5, 526c8bc.
 
-**Now:** 5-1 and 5-2 coded; prebuild RC=0; `test:summary` and the market test OK.
+**Now:** 5-1 and 5-2 coded (ac15776); `describe:publish` answered 404 «the node does not know this element as a born one» — the card in git is current, the core's registry copy is not; prebuild RC=0; `test:summary` and the market test OK.
 
 **Next action:** the core deploys → live: no key 401, with the key 200; eyes on `?open=` and `?element=` → close step 5.
 
