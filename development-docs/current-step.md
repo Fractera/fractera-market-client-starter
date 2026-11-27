@@ -12,7 +12,7 @@ Stage: 1
 
 **Now (21:20):** 4-4 coded (ac27a0a) — one master-detail layout (`table-detail`: Resizable 50/50, 30–70; a 90 % drawer on a phone) for all three pages, one `StarterCard`; prebuild RC=0. Eyes wait for the core's build.
 
-**Then (21:25):** the core deployed 4-4 (e9c2a1d) and looked; fixes in one more commit: the card's clipped edge, version and report in the card, «Покупки» → «Купленные» in the cart's text. «Что умеет» stays English (the store has no Russian description).
+**Then (21:25):** the core deployed 4-4 (e9c2a1d) and looked; fixes in one more commit (f5e96d8): the card's clipped edge, version and report in the card, «Покупки» → «Купленные» in the cart's text. «Что умеет» stays English (the store has no Russian description).
 
 **Intake:** `pre-steps/27-11-2026_21-08-00.md` — the «f2f · Web2» tab on «Как это работает»: that page is the core's, and the text is the texts pass; named back to the core twice (21:20, 21:30): the page is the core's; waiting for the core's word on where the tab lives.
 
