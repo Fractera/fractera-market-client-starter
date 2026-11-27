@@ -4,6 +4,8 @@
 
 **Last change:** step 4 — the three marketplace pages as tables with one table-and-card layout (f59fd3d, 0402b19, ac27a0a, f5e96d8), seen live at 1440 and 390.
 
+**Last research:** `reports/research-telegram-mini-app-marketplace.md` (Telegram 1682) — the marketplace in the core's Mini App: variant A (a remote card), one question to the architect on Stars.
+
 **Next action:** wait for the core's next task. 4-5 (the install state asked for every purchase not installed, own words) added to the closed step 4.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
