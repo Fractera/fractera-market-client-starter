@@ -27,6 +27,8 @@ export type RecommendationsWords = {
   columns: { n: string; starter: string; author: string; price: string; task: string; state: string; actions: string }
   onlyFree: string
   onlyFractera: string
+  onlyElement: string
+  showAll: string
   priceUp: string
   priceDown: string
   noAuthor: string
@@ -60,6 +62,8 @@ const en: RecommendationsWords = {
   columns: { n: "No.", starter: "Starter", author: "Author", price: "Price", task: "Task", state: "State", actions: "Actions" },
   onlyFree: "Free",
   onlyFractera: "By Fractera",
+  onlyElement: "Only the tasks of the element",
+  showAll: "Show all",
   priceUp: "Price ↑",
   priceDown: "Price ↓",
   noAuthor: "—",
@@ -93,6 +97,8 @@ const ru: RecommendationsWords = {
   columns: { n: "№", starter: "Стартер", author: "Автор", price: "Цена", task: "Задача", state: "Состояние", actions: "Действия" },
   onlyFree: "Бесплатные",
   onlyFractera: "От Fractera",
+  onlyElement: "Только задачи элемента",
+  showAll: "Показать все",
   priceUp: "Цена ↑",
   priceDown: "Цена ↓",
   noAuthor: "—",

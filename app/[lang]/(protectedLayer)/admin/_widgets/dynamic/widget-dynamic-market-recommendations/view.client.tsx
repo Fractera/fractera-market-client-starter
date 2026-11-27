@@ -3,7 +3,8 @@
 // the store search in its top card, the filters «Бесплатные» and «От Fractera», the price sort, rows per page and pages; each row with
 // its three decisions. A click on a name opens the starter's card beside the table (`table-detail`: Resizable, a drawer on a phone);
 // while it is open the table keeps only №, the starter, the price and the state — the card carries the rest.
-import { type ReactNode, useState } from "react"
+import { type ReactNode, useEffect, useState } from "react"
+import { useQueryParam } from "../../../_libs/deep-link"
 import { TableDetail } from "@/components/table/table-detail.client"
 import { StarterCard } from "../../../_components/starter-card.client"
 import { Badge } from "@/components/ui/badge"
@@ -65,6 +66,17 @@ function RecommendationsTable({
   onChoice?: (row: RecommendationRow, choice: Choice) => void
 }) {
   const [openId, setOpenId] = useState<string | null>(null)
+  // Step 5: `?element=<id>` shows that element's rows only; `?open=<slug>` opens the latest row of that starter.
+  const [onlyElement, showAll] = useQueryParam("element")
+  const [wantOpen] = useQueryParam("open")
+  const all = rows
+  rows = onlyElement ? all.filter((r) => r.element === onlyElement) : all
+  useEffect(() => {
+    if (!wantOpen) return
+    const hit = rows.filter((r) => r.starter === wantOpen).at(-1)
+    if (hit) setOpenId(hit.id)
+    // Once per link, not per refresh of the rows
+  }, [wantOpen, onlyElement])
   const chosen = rows.find((r) => r.id === openId) ?? null
   const compact = chosen !== null
   const c = words.columns
@@ -112,7 +124,21 @@ function RecommendationsTable({
 
   return (
     <TableDetail
-      table={table}
+      table={
+        onlyElement ? (
+          <div data-block="rvel1" className="flex flex-col gap-3">
+            <div data-block="rvel2" className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground" data-only-element={onlyElement}>
+              {words.onlyElement} <span className="font-mono text-foreground">{onlyElement}</span>
+              <Button size="sm" variant="link" className="h-auto p-0" onClick={showAll}>
+                {words.showAll}
+              </Button>
+            </div>
+            {table}
+          </div>
+        ) : (
+          table
+        )
+      }
       open={chosen !== null}
       onClose={() => setOpenId(null)}
       title={chosen?.name ?? ""}

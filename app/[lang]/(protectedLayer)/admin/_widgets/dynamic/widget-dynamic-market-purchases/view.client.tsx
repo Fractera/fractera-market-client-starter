@@ -5,7 +5,8 @@
 // «Установить» while it is not installed, «Установить ещё раз» only once it is. A click on a name opens the starter's card beside the
 // table (`table-detail`) — the same layout as the recommendations and the cart (Telegram 1655). Nothing is shown as bought before the
 // core says so (R-04). The data and the action come from its island (island.client.tsx).
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useQueryParam } from "../../../_libs/deep-link"
 import { Badge } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { EmptyState } from "@/components/ui/empty-state"
@@ -53,6 +54,12 @@ function PurchasesTable({
   onInstall?: (p: Purchase) => void
 }) {
   const [openId, setOpenId] = useState<string | null>(null)
+  // Step 5: `?open=<slug>` opens that starter's card.
+  const [wantOpen] = useQueryParam("open")
+  useEffect(() => {
+    if (wantOpen && purchases.some((x) => x.starter === wantOpen)) setOpenId(wantOpen)
+    // Once per link, not per refresh of the list
+  }, [wantOpen])
   const chosen = purchases.find((p) => p.starter === openId) ?? null
   const compact = chosen !== null
   const c = words.columns

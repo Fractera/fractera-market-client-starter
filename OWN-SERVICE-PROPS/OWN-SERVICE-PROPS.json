@@ -4,7 +4,7 @@
   "shortDescription": "The marketplace client of this project: it keeps the recommendations of starters from the Fractera store for the person's and the elements' tasks, the cart with one copy of each starter and the history of choices, and passes the purchase and the install to the core. (Preliminary — written by the core's main agent at birth on 2026-11-27, from fractera-native-item-starter v0.1.87; the element's agent refines it.)",
   "longDescription": "",
   "accepts": "A task in plain words from an element or the person (POST /api/recommend { element, task, lang }); the person’s choice on a row (keep, delete, cart); cart actions (add, remove, clear).",
-  "returns": "Recommended starters of the Fractera store per task, «recommended, waiting for the person’s decision» with their page links; the list by task, the cart with one copy of each starter and its total, the history of choices (rejected, kept, bought).",
+  "returns": "Recommended starters of the Fractera store per task, «recommended, waiting for the person’s decision» with their page links; the list by task, the cart with one copy of each starter and its total, the history of choices (rejected, kept, bought); the counts for a Telegram remote (GET /api/summary): waiting, the cart and its total, bought not installed — the whole project or one element.",
   "designSkill": "impeccable",
   "isFracteraArchitecture": true,
   "framework": "next",

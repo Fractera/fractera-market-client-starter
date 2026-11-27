@@ -89,8 +89,9 @@ payment for a digital good inside Telegram breaks the Stars rule — the node's 
 
 ## 6. Who builds what (variant A)
 
-- **The core:** the «Маркет» card in «Пульт», and the same card for the custom elements' Mini Apps (it draws every element's Mini App
-  — step 853 — and it is the orchestrator a custom element reaches this element through); the Telegram side — `initData` validation,
+- **The core:** the «Маркет» card in «Пульт»; in a custom element's Mini App the card is a release of the custom template (its `tg`
+  branch is the template's own, not drawn by the core — only a native element's Mini App is the core's, step 853), and the core makes
+  that release; the Telegram side — `initData` validation,
   theme variables, safe areas, `MainButton`, `BackButton`, `startapp` links, the chat topic. A native element's Mini App gets no card.
 - **This element:** one door `GET /api/summary` → `{ waiting, cart: { lines, total }, bought: { notInstalled } }`, and
   `?element=<id>` → that element's `{ found, waiting }` (no model, one read of its own data; the rows already carry `element`); the
@@ -98,7 +99,12 @@ payment for a digital good inside Telegram breaks the Stars rule — the node's 
   that open one starter's card or one element's rows straight (`/ru/admin/recommendations?open=<slug>`, `?element=<id>`).
 - Nothing here is built until the core and the architect choose the variant.
 
-## 7. The one question for the architect
+## 7. Decided (2026-11-27)
+
+The architect, Telegram 1687, verbatim: «Оплата только на сайте за реальные деньги». No Stars. The core's main agent: variant A is
+chosen, with B as its addition. This element's part became step 5 (`GET /api/summary`, deep links).
+
+## 8. The question that was asked
 
 Will starters ever be sold right inside Telegram for Stars, or is payment always only on the site? — the answer decides whether the
 Mini App stays a remote that links to the cart (A) or one day takes a Stars payment (a separate step with `/terms`, `/paysupport`, refunds).

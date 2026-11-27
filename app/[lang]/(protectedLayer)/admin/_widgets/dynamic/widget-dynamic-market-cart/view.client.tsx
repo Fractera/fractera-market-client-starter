@@ -3,7 +3,8 @@
 // the filters «Бесплатные» and «От Fractera», the price sort, pages), the total and «Получить» for a free cart under it. A click on a
 // name opens the starter's card beside the table (`table-detail`: Resizable, a drawer on a phone) — the same layout as the
 // recommendations (the architect, Telegram 1655). Payment of a paid starter stays hidden (step 3): a paid total shows one honest line.
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useQueryParam } from "../../../_libs/deep-link"
 import { Button } from "@/components/ui/button"
 import { EmptyState } from "@/components/ui/empty-state"
 import { Separator } from "@/components/ui/separator"
@@ -55,6 +56,12 @@ function CartTable({
   onGet?: () => void
 }) {
   const [openId, setOpenId] = useState<string | null>(null)
+  // Step 5: `?open=<slug>` opens that starter's card.
+  const [wantOpen] = useQueryParam("open")
+  useEffect(() => {
+    if (wantOpen && lines.some((x) => x.starter === wantOpen)) setOpenId(wantOpen)
+    // Once per link, not per refresh of the list
+  }, [wantOpen])
   const { lines, total } = cart
   const chosen = lines.find((l) => l.starter === openId) ?? null
   const compact = chosen !== null

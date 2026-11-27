@@ -1,16 +1,23 @@
 # Current step
 
-**Active step:** none — step 4 closed 2026-11-27 (`steps-done/4.md`).
+**Active step:** 5 — the summary door and deep links for the Mini App card (`steps-new/5-summary-door-and-deep-links.md`).
+State: planned 2026-11-27 ~22:00; the architect's «Оплата только на сайте за реальные деньги» recorded in the quiz; the research corrected (the custom element's card is a template release).
 
-**Last change:** step 4 — the three marketplace pages as tables with one table-and-card layout (f59fd3d, 0402b19, ac27a0a, f5e96d8), seen live at 1440 and 390.
+Serves: S-03, S-04
+Stage: 1
 
-**Last research:** `reports/research-telegram-mini-app-marketplace.md` (Telegram 1682) — the marketplace in the core's Mini App: variant A (a remote card), one question to the architect on Stars.
+**Last change:** step 4 closed (b89a686), 4-5 (ec1b143); research af90fe5, 526c8bc.
 
-**Next action:** wait for the core's next task. 4-5 (the install state asked for every purchase not installed, own words) added to the closed step 4.
+**Now:** 5-1 and 5-2 coded; prebuild RC=0; `test:summary` and the market test OK.
+
+**Next action:** the core deploys → live: no key 401, with the key 200; eyes on `?open=` and `?element=` → close step 5.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27 21:58 UTC, the architect (Telegram 1687): «Оплата только на сайте за реальные деньги».
+- 2026-11-27 21:51 UTC, the architect (Telegram 1684): «Насколько я понимаю для телеграмм приложения нам нужно показывать поиск элементов для ядра и для кастомных элементов не так ли? Не вижу смысла показывать этот интерфейс для активных элементов согласен?»
 
 - 2026-11-27 21:01 UTC, the architect (Telegram 1654): «Интерфейс который ты мне представил мне нравится сделай ещё так чтобы когда я выбираю какую-либо шаблон и нажимаю на его название этот экран делится на две части причём будем использовать специальный элемент shadcn - resizable по умолчанию установил состояние 50% но позволим делать диапазон от 30 до 70% то есть поставить ручку для дизайна ширины. В мобильной версии просто выезжает ящик с шириной экрана 90%».
 - 2026-11-27 21:01 UTC, the architect (Telegram 1655): «Этот же макет будем использовать и для корзины и для купленных».

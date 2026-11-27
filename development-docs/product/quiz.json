@@ -62,6 +62,10 @@
     {
       "id": "N-04",
       "text": "Платный тестовый стартер в тестовом режиме Stripe — по слову Ромы."
+    },
+    {
+      "id": "N-05",
+      "text": "Оплата стартеров внутри Telegram за Stars — архитектор: «Оплата только на сайте за реальные деньги»."
     }
   ],
   "stages": [
@@ -156,6 +160,11 @@
       "date": "2026-11-27",
       "said": "«Stage 0 is accepted … it has no screen, so there is nothing for him to look at, and the core’s main agent counts it done on its live checks (401 without a key; history 0 → 1; cart twice → one line)»",
       "gist": "Stage 0 is done on the live checks of the core’s main agent (architect’s question in Telegram, 19:37 UTC); stage 1 begins."
+    },
+    {
+      "date": "2026-11-27",
+      "said": "«Оплата только на сайте за реальные деньги»",
+      "gist": "No Telegram Stars: a starter is paid only on the site, with real money; a Telegram Mini App never takes a payment — it links to the real cart (Telegram 1687; Telegram requires Stars for digital goods sold inside Telegram, research reports/research-telegram-mini-app-marketplace.md)."
     }
   ]
 }

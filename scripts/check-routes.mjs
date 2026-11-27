@@ -98,6 +98,7 @@ const ALLOWED = new Map([
   ['app/api/history/route.ts', 'door history: The history of choices by task: rejected, kept, bought (door:add, node step 548-16)'],
   ['app/api/choice/route.ts', 'door choice: Keep, delete or put a recommended starter in the cart (door:add, node step 548-16)'],
   ['app/api/cart/route.ts', 'door cart: The cart: one copy of each starter, add, remove, clear (door:add, node step 548-16)'],
+  ['app/api/summary/route.ts', 'door summary: Counts of recommendations waiting, cart and bought not installed (door:add, node step 548-16)'],
 ])
 
 const found = []

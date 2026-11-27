@@ -300,6 +300,35 @@
               "callers": [
                 "*"
               ]
+            },
+            {
+              "skill": "summary",
+              "protocol": "http",
+              "method": "GET",
+              "path": "/api/summary",
+              "key": "node-key",
+              "input": {
+                "element": "blog",
+                "lang": "ru"
+              },
+              "output": {
+                "element": "blog",
+                "found": 2,
+                "waiting": 1,
+                "inCart": 1,
+                "pages": {
+                  "recommendations": "/ru/admin/recommendations?element=blog",
+                  "cart": "/ru/admin/cart",
+                  "bought": "/ru/admin/purchases"
+                }
+              },
+              "errors": {
+                "401": "bad_key",
+                "403": "not_yours"
+              },
+              "callers": [
+                "*"
+              ]
             }
           ],
           "consumes": [
@@ -389,7 +418,8 @@
             "/api/prototypes",
             "/api/settings/brief",
             "/[lang]/admin/api/settings/design",
-            "/[lang]/admin/api/settings/brief", "/[lang]/admin/api/market"
+            "/[lang]/admin/api/settings/brief",
+            "/[lang]/admin/api/market"
           ],
           "a2aEndpoint": "/api/a2a",
           "a2aSkills": [
@@ -639,6 +669,27 @@
       "examples": [
         "что в корзине",
         "очистить корзину"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "summary",
+      "name": "Marketplace counts for a Telegram remote",
+      "description": "Counts only, no model: recommendations waiting a decision, the cart (lines and total) and bought starters not installed; ?element=<id> narrows to that element's tasks, a neighbour gets its own. Links to the real pages. Not over A2A: an HTTP door — GET /api/summary (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door",
+        "marketplace",
+        "summary",
+        "telegram"
+      ],
+      "examples": [
+        "GET /api/summary → {waiting, cart:{lines,total}, bought:{all,notInstalled}, pages}",
+        "GET /api/summary?element=blog → {element, found, waiting, inCart, pages}"
       ],
       "inputModes": [
         "application/json"
