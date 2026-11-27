@@ -1,20 +1,20 @@
 # Current step
 
-**Active step:** 5 — the summary door and deep links for the Mini App card (`steps-new/5-summary-door-and-deep-links.md`).
-State: planned 2026-11-27 ~22:00; the architect's «Оплата только на сайте за реальные деньги» recorded in the quiz; the research corrected (the custom element's card is a template release).
+**Active step:** 6 — the paid purchase in the cart (`steps-new/6-the-paid-purchase.md`, core step 862-15).
+State: planned 2026-11-27 ~23:40; going on without waiting (the core's word).
 
-Serves: S-03, S-04
+Serves: S-05, S-06, S-07, R-01, R-04, R-05
 Stage: 1
 
-**Last change:** step 4 closed (b89a686), 4-5 (ec1b143); research af90fe5, 526c8bc.
+**Last change:** step 5 closed (`steps-done/5.md`): live 401 / 200, eyes on `?open=` and `?element=`.
 
-**Now:** 5-1 and 5-2 coded (ac15776); `describe:publish` answered 404 «the node does not know this element as a born one» — the card in git is current, the core's registry copy is not; prebuild RC=0; `test:summary` and the market test OK.
-
-**Next action:** the core deploys → live: no key 401, with the key 200; eyes on `?open=` and `?element=` → close step 5.
+**Next action:** 6-1 the purchase in `lib/market` against a stub of the core's shapes.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27 23:18 UTC, the architect (Telegram 1737): «Следом после этого создавай как мы с тобой договорились покупку элементов. Для этого один из элементов сделать платным например один доллар попробуем его покупить через тестовой аккаунт Страйп».
 
 - 2026-11-27 21:58 UTC, the architect (Telegram 1687): «Оплата только на сайте за реальные деньги».
 - 2026-11-27 21:51 UTC, the architect (Telegram 1684): «Насколько я понимаю для телеграмм приложения нам нужно показывать поиск элементов для ядра и для кастомных элементов не так ли? Не вижу смысла показывать этот интерфейс для активных элементов согласен?»
