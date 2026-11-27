@@ -10,7 +10,7 @@ Stage: 1
 
 **Now (2026-11-27 ~21:10):** 4-2 proven on the deployed 4-1 (2 live rows; the tie-swap of «Цена ↓» fixed). 4-3 coded (0402b19): the drawer's three entries (`lib/menu/account-links.ts`), «Покупки» → «Купленные» with «Куплен» + the install state + «Установить» / «Установить ещё раз», the install keeps {element, address}, the pager on a phone (table-tools v1.1.1). prebuild RC=0, the market test OK. Page titles live already (data); the code waits for the core's build.
 
-**Now (21:20):** 4-4 coded — one master-detail layout (`table-detail`: Resizable 50/50, 30–70; a 90 % drawer on a phone) for all three pages, one `StarterCard`; prebuild RC=0. Eyes wait for the core's build.
+**Now (21:20):** 4-4 coded (ac27a0a) — one master-detail layout (`table-detail`: Resizable 50/50, 30–70; a 90 % drawer on a phone) for all three pages, one `StarterCard`; prebuild RC=0. Eyes wait for the core's build.
 
 **Intake:** `pre-steps/27-11-2026_21-08-00.md` — the «f2f · Web2» tab on «Как это работает»: that page is the core's, and the text is the texts pass; named back to the core.
 
