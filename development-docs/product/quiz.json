@@ -79,7 +79,15 @@
         "E-03"
       ],
       "ready": "Два запроса по одной задаче: второй несёт историю первого; запрос без ключа проекта получает отказ.",
-      "status": "draft"
+      "status": "confirmed",
+      "done": {
+        "date": "2026-11-27",
+        "said": "«Stage 0 is accepted … the core’s main agent counts it done on its live checks (401 without a key; history 0 → 1; cart twice → one line)»"
+      },
+      "confirmed": {
+        "date": "2026-11-27",
+        "said": "«Да» — the plan of stage 0 accepted as written (the core’s main agent, for the architect)"
+      }
     },
     {
       "n": 1,
@@ -143,6 +151,11 @@
       "date": "2026-11-27",
       "said": "«Давай определим кто что строит … Ты здесь самое главное поэтому ты сейчас распредели все эти обязанности»",
       "gist": "The creator agent leads the quartet; this client grows on the creator's node by its own agent on the creator's tasks."
+    },
+    {
+      "date": "2026-11-27",
+      "said": "«Stage 0 is accepted … it has no screen, so there is nothing for him to look at, and the core’s main agent counts it done on its live checks (401 without a key; history 0 → 1; cart twice → one line)»",
+      "gist": "Stage 0 is done on the live checks of the core’s main agent (architect’s question in Telegram, 19:37 UTC); stage 1 begins."
     }
   ]
 }

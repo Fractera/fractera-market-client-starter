@@ -1,16 +1,22 @@
 # Current step
 
-**Active step:** none — step 2 closed (`steps-done/2.md`); stage 0 deployed and checked live. Step 3 waits in the intake.
+**Active step:** 3 — the pages of recommendations and the cart (`development-docs/steps-new/3-the-pages-of-recommendations-and-cart.md`).
+State: building; substep 3-1 (design pass) next.
 
-**Last change:** stage 0 deployed by the core's main agent 14:43 and checked live on 24697 (401 without key; history 0 → 1; cart
-twice → one line). Step 3 planned, held in the intake. Before: step 2 — the doors recommend · recommendations · choice · cart · history, the data in the data element, the v2 stub.
+Serves: S-03, S-04, S-05, S-06, S-07, R-01, R-02, R-03
+Stage: 1
 
-**Next action:** the architect's word «stage 0 done» → the step 3 plan (`pre-steps/27-11-2026_15-00-00-step-3-plan.md`) moves to
-`steps-new/`, then the three lines' «yes» → substep 3-1 (design pass).
+**Last change:** stage 0 closed in the quiz on the core main agent's live checks; the step 3 plan moved from the intake to `steps-new/`
+and widened by the «yes» (the core's doors /api/node/market/*, the free path, the stub replaced).
 
-**Queue:** `pre-steps/27-11-2026_15-00-00-step-3-plan.md` (step 3, stage 1). Open in the quiz: Q-01, Q-02 (defaults taken in step 2, the architect may correct).
+**Next action:** `npm run pass -- design` → substep 3-1: three page skeletons in the admin branch, one widget each, shadcn parts,
+`data-block` on every container, `npm run eyes` phone and desktop; then report 3-1 to the core (`npm run tell-core`, then done).
+
+**Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-27 ~19:40, the core's main agent: «Stage 0 is accepted … The three lines' «yes»: yes, as written in the plan» — with «search, cart, purchase and install through the core's doors /api/node/market/*, your own key; payment hidden, the free path first; the stub replaced by the core's search door». Report to the core when 3-1 is done.
 
 - 2026-11-27, the core's main agent: «Отмечать этап 0 "done" в квизе пока не надо: это слово архитектора» — stage 0 stays open until the architect says so.
 
