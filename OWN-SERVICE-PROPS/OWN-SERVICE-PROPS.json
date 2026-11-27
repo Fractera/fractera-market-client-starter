@@ -28,11 +28,12 @@
   },
   "development": {
     "steps": [
-      "3"
+      "3",
+      "3.1"
     ],
-    "current": "3",
-    "state": "waiting",
-    "next": "the architect's word on stage 0, then the yes for step 3",
-    "at": "2026-11-27T14:46:32.353Z"
+    "current": "3.1",
+    "state": "building",
+    "next": "substep 3-1 in the design pass: three page skeletons",
+    "at": "2026-11-27T19:38:53.565Z"
   }
 }
