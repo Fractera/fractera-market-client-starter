@@ -9,7 +9,7 @@ Substeps 3-2…4b (main pass) building together 2026-11-27: the core's leader as
 Serves: S-03, S-04, S-05, S-06, S-07, R-01, R-02, R-03
 Stage: 1
 
-**Last change:** substep 3-1 (commit 75c3eb4) — the pages and their islands; full `npm run prebuild` RC=0; `npm run eyes` at 1440 and 390 px on a
+**Last change:** substeps 3-2…4b (commit eb77e70), waiting for the build. Before: substep 3-1 (commit 75c3eb4) — the pages and their islands; full `npm run prebuild` RC=0; `npm run eyes` at 1440 and 390 px on a
 temporary `next dev` (port 24797, stopped after): the three pages answer 200, the skeletons draw, no console errors. The live site shows
 the islands only after a build (the step closes with one build, substep 7).
 
