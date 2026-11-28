@@ -28,13 +28,11 @@
   },
   "development": {
     "steps": [
-      "4",
-      "4.1",
-      "4.2"
+      "6.3"
     ],
-    "current": "4.1",
-    "state": "planning",
-    "next": "design pass: take table-tools, rebuild the recommendations island",
-    "at": "2026-11-27T20:51:05.172Z"
+    "current": "6.3",
+    "state": "waiting",
+    "next": "6-3 live paid path when the store gives the priced test starter slug; step 7 closed, ready for v0.1.2",
+    "at": "2026-11-28T15:54:40.270Z"
   }
 }

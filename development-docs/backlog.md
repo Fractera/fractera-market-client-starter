@@ -18,3 +18,4 @@ Format, one line per item, address first:
 - `admin/_widgets/dynamic/widget-dynamic-market-*` — the texts pass (step 3, substep 6) not run · the words exist in ru and en · 2026-11-27
 - the starter card «Что умеет» — the store gives the description in English only, also for `lang: ru` · ask the store for a description in the person's language · 2026-11-27
 - `/ru/admin/recommendations` — the two rows found before f5e96d8 carry no version and no report · they fill when the store offers the starter again; no back-fill built · 2026-11-27
+- `/ru/admin/recommendations` opened by a guest — its widgets still ask the locked doors (cart, recommendations, history): 401 lines in the console behind the access window · ask them only after `/api/me` names a role · 2026-11-28

@@ -1,24 +1,19 @@
 # Current step
 
-**Active step:** 7 — the public start page (`steps-new/7-the-public-start-page.md`, core step 862-16).
-State: planned 2026-11-28 ~15:40; going on without waiting (the core's word). Step 6 stays open: 6-3 (the live paid path) waits for the store's priced test starter — it comes first when the slug arrives (`steps-new/6-the-paid-purchase.md`).
+**Active step:** 6 — the paid purchase (`steps-new/6-the-paid-purchase.md`): 6-3 (the live paid path) waits for the store's priced test starter slug.
 
 Serves: S-03
 Stage: 1
 
-**Last change:** 6-1, 6-2 deployed (65bc639); the reconcile of ord-be889e7cd713d1165e6e3d20 live.
+**Last change:** step 7 closed 2026-11-28 (`steps-done/7.md`): 155f2da, 9a9abe2, ba51e06; live on market.throughsongs.com/ru — five sections, noindex, no console errors at 1440 and 390. Ready for the release v0.1.2 (steps 6 and 7) by the core.
 
-**Now:** 7-1 coded (155f2da, main): `/api/me` 200 for a guest, `meta.noindex` (robots, no hreflang, out of the sitemap), the home page data in five sections (not `bare`), the page `_pages/authors`; the words are drafts from the architect's own.
-
-**Done:** 7-2 (texts pass, 2026-11-28, 9a9abe2): the words of the home page and `_pages/authors` in ru and en through `humanizer`.
-
-**Next action:** 7-3 found live (2026-11-28 15:50 UTC, market.throughsongs.com): the five sections at 1440 and 390, `noindex, follow`, the old «never sold» line gone, «Мои рекомендации» → the access window with sign-in; but `/api/me` still 401 for a guest — the gate in `proxy.ts` cut it before the handler (localhost hid it: the owner at the machine passes). Fix 7-1 reopened: `/api/me` named in `PUBLIC_API_PREFIXES` — prebuild RC=0, commit ba51e06; waiting for the core's deploy and a second live look. Note: market.fractera.ai is another server running the released template — not this element's build.
+**Next action:** 6-3 when the slug arrives.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
 
-- 2026-11-28, the architect (Telegram 608, 610): the public start page — verbatim in `steps-new/7-the-public-start-page.md`.
+- 2026-11-28, the architect (Telegram 608, 610): the public start page — summarised in `steps-done/7.md`, verbatim in git history of `steps-new/7-the-public-start-page.md`.
 
 - 2026-11-27 23:18 UTC, the architect (Telegram 1737): «Следом после этого создавай как мы с тобой договорились покупку элементов. Для этого один из элементов сделать платным например один доллар попробуем его покупить через тестовой аккаунт Страйп».
 
