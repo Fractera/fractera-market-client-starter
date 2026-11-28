@@ -128,6 +128,7 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
     if (!page) throw new Error(`branch root without _data/en.json: ${opts.segments.join('/')}`)
     return createContentPage({
       data: { overrides: page.overrides },
+      noindex: page.meta.noindex,
       // 340-2: закрытые ветки (кабинеты, гость) закрыты от поиска своим layout; страница обязана это знать, иначе печатает
       // набор hreflang, который поисковик не учтёт (сторож: noindex-with-hreflang).
       closedBranch: !isPublic(opts.segments),
@@ -178,6 +179,7 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
     const parent = parentSlug ? branchChild(opts.segments, parentSlug) : null
     const factory = createContentPage({
       data: { overrides: page.overrides },
+      noindex: page.meta.noindex,
       closedBranch: !isPublic(opts.segments),
       meta: { subPath: `${opts.subPath}/${slug}`, ogImage: ogImageOf(page.meta.ogImage, opts.segments, `${opts.subPath}/${slug}`), service: page.meta.service },
       resolve: (lang) => contentOf(page, lang, opts.segments),

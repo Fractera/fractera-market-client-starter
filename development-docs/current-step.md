@@ -8,7 +8,9 @@ Stage: 1
 
 **Last change:** 6-1, 6-2 deployed (65bc639); the reconcile of ord-be889e7cd713d1165e6e3d20 live.
 
-**Next action:** 7-1 (main): `/api/me` for a guest, `meta.noindex`, the page data; then `npm run pass -- texts` for 7-2.
+**Now:** 7-1 coded (main): `/api/me` 200 for a guest, `meta.noindex` (robots, no hreflang, out of the sitemap), the home page data in five sections (not `bare`), the page `_pages/authors`; the words are drafts from the architect's own.
+
+**Next action:** 7-2 in the texts pass (`npm run pass -- texts`): every word of `(publicLayer)/_data/{ru,en}.json` and `_pages/authors/{ru,en}.json` through `humanizer`, compact, every claim as the architect stated it; then prebuild, commit, reply-core with the step's state; the eyes of 7-3 after the core's deploy.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 

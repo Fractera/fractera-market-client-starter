@@ -69,11 +69,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // стоял перечень раздела /blog и всех его постов — вместе с разделом он
   // потерял предмет.
   const home = branchRoot("(publicLayer)")
-  if (home) for (const lang of indexableLanguages(home)) {
+  // market step 7: a page marked `noindex` in its meta.json (the same on every node) is not promised to a search engine.
+  if (home && !home.meta.noindex) for (const lang of indexableLanguages(home)) {
     out.push({ url: urlFor(lang, ""), changeFrequency: "daily", priority: 1 })
   }
 
   for (const page of branchChildren("(publicLayer)")) {
+    if (page.meta.noindex) continue
     for (const lang of indexableLanguages(page)) {
       out.push({ url: urlFor(lang, `/${page.slug}`), changeFrequency: "weekly", priority: 0.5 })
     }

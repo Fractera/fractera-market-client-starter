@@ -28,6 +28,9 @@ export type PageMeta = {
   bare?: boolean
   /** Картинка для соцсетей. */
   ogImage?: string
+  /** The page stands the same on every node and is not for search (market step 7: the one indexed storefront is the store on
+   *  fractera.ai): `robots: noindex`, no hreflang, out of the sitemap. */
+  noindex?: boolean
   /** 431: страница предлагает услугу — разметка schema.org `Service` вместо `Article`. Название и описание — слова страницы
    *  на её языке; здесь только то, что не переводится. Нет поля — обычная статья. */
   service?: ServiceMeta

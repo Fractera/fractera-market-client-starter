@@ -1,205 +1,87 @@
 {
-  "title": "A native element of your node",
-  "description": "Native elements come with the core at the first start and serve the core and every other element: sign-in, the database, the stores, the memory and the settings. This is the template each of them is built from.",
-  "keywords": "",
+  "title": "Your project's marketplace",
+  "description": "Ready starters for the tasks your project cannot solve yet: launch an MVP today, not in a month.",
+  "keywords": "starters, Fractera marketplace, MVP, project elements",
   "body": [
     {
-      "kind": "widget-static-native-landing",
-      "bid": "nw001"
-    },
-    {
       "kind": "section-hero-centered",
-      "pill": "OpenSource Web4 agent & app starter kit",
-      "title": "A native element of your node",
-      "description": "Native elements come with the core at the first start and serve the core and every other element. This is the template each of them is built from.",
+      "pill": "Fractera Market",
+      "title": "Your project's marketplace",
+      "description": "Ready starters for the tasks your project cannot solve yet: launch an MVP today, not in a month.",
       "cta": {
-        "label": "The twelve natives",
-        "href": "#hood"
+        "label": "My recommendations",
+        "href": "/en/admin/recommendations"
       },
       "secondary": {
-        "label": "Open source",
-        "href": "#credits"
+        "label": "Offer your element",
+        "href": "/en/authors"
       },
-      "bid": "nh001"
+      "bid": "blgvy"
     },
     {
       "kind": "section-head",
-      "id": "route",
-      "title": "What a native element is",
-      "bid": "na000"
-    },
-    {
-      "kind": "text-h4",
-      "text": "It comes with the node",
-      "bid": "na001"
+      "id": "why",
+      "title": "Why a starter, not from scratch",
+      "bid": "otkdb"
     },
     {
       "kind": "text-p",
-      "text": "The installer puts every native element in place by its pinned tag at the first start.",
-      "bid": "na002"
-    },
-    {
-      "kind": "text-h4",
-      "text": "It serves the others",
-      "bid": "na003"
+      "text": "Agents can build any element from scratch. It takes professional expertise, time and money.",
+      "bid": "jpz4a"
     },
     {
       "kind": "text-p",
-      "text": "The core and the custom elements call its doors; it has no working process and takes no payments.",
-      "bid": "na004"
-    },
-    {
-      "kind": "text-h4",
-      "text": "It sees the whole node",
-      "bid": "na005"
-    },
-    {
-      "kind": "text-p",
-      "text": "Native elements open the stores with the node’s data key, each finding named by its element.",
-      "bid": "na006"
-    },
-    {
-      "kind": "text-h4",
-      "text": "It stays in its place",
-      "bid": "na007"
-    },
-    {
-      "kind": "text-p",
-      "text": "The core does not delete a native element or move its address; its code is open and yours to change.",
-      "bid": "na008"
-    },
-    {
-      "kind": "text-small",
-      "text": "Native elements are never sold and never join an outside network.",
-      "bid": "na009"
+      "text": "A starter is different. It is not a ready solution for your case but a tool that gives a working MVP at once. You quickly see what is worth growing and what to drop.",
+      "bid": "xyg6w"
     },
     {
       "kind": "section-head",
-      "id": "power",
-      "title": "On by default, except Stripe and Redis",
-      "bid": "q0000"
-    },
-    {
-      "kind": "text-p",
-      "text": "Every native element arrives turned on, except Stripe, which waits for its keys, and the fast store (Redis), which waits for an application that needs it. The node holds the switch of each.",
-      "bid": "q0001"
-    },
-    {
-      "kind": "section-head",
-      "id": "hood",
-      "title": "The twelve natives",
-      "bid": "nb000"
-    },
-    {
-      "kind": "text-table",
-      "head": [
-        "Element",
-        "What it does"
-      ],
-      "rows": [
-        [
-          "Sign-in",
-          "Who came and with which roles"
-        ],
-        [
-          "Database",
-          "Each element its own tables, the deploy journal, the agents’ conversations"
-        ],
-        [
-          "Storage",
-          "Files and pictures with addresses that never change"
-        ],
-        [
-          "Vectors",
-          "Search by meaning"
-        ],
-        [
-          "Embeddings",
-          "The numbers of meaning, counted on this computer"
-        ],
-        [
-          "Graph",
-          "The points and roads of what the node knows"
-        ],
-        [
-          "Deep memory",
-          "What was said and kept, with reminders at a time"
-        ],
-        [
-          "CONFIG",
-          "The settings of every application"
-        ],
-        [
-          "Stripe",
-          "Payments, turned on with its keys"
-        ],
-        [
-          "Cache",
-          "The fast store for the busy actions of applications"
-        ]
-      ],
-      "bid": "nb001"
-    },
-    {
-      "kind": "section-head",
-      "id": "builder",
-      "title": "Your own builder comes with it",
-      "bid": "q0002"
-    },
-    {
-      "kind": "text-p",
-      "text": "Every element of the node comes with its own Claude Code agent and can get its own Telegram bot. When something in this element should change, write to its bot from your phone, and the agent updates the logic or the design.",
-      "bid": "q0003"
-    },
-    {
-      "kind": "text-p",
-      "text": "The agent works only in its element's folder and never reads the whole node, so each change costs fewer tokens. Your Claude Code subscription pays for it.",
-      "bid": "q0004"
+      "id": "how",
+      "title": "How it works",
+      "bid": "aajdh"
     },
     {
       "kind": "text-list",
+      "ordered": true,
       "items": [
-        "The element's bot is connected in the core, on its «Telegram» page.",
-        "The agent returns a commit; you look at it in «Preview» and accept it or turn it down.",
-        "At the computer, the agent's terminal is in the core, in this element's «Build»."
+        "The project's agent notices a task no element solves.",
+        "The Fractera store proposes a starter and says why it fits.",
+        "You decide: nothing is bought without your payment window.",
+        "The core installs the starter as a new element that serves every element of the project."
       ],
-      "bid": "q0005"
+      "bid": "eu9v9"
     },
     {
       "kind": "section-head",
-      "id": "credits",
-      "title": "Open source",
-      "bid": "nc000"
+      "id": "honest",
+      "title": "Honestly about guarantees",
+      "bid": "yl9z5"
     },
     {
       "kind": "text-p",
-      "text": "Built by Fractera for the [Lagrix](https://lagrix.dev) protocol. MIT license, the template is at [github.com/Fractera/fractera-native-item-starter](https://github.com/Fractera/fractera-native-item-starter).",
-      "bid": "nc001"
+      "text": "Starters are tools for a fast start, not ready solutions for every case.",
+      "bid": "fef6t"
+    },
+    {
+      "kind": "text-p",
+      "text": "Fractera does not guarantee that a starter closes your task completely. Before buying, study the starter's page and the check report that comes with it.",
+      "bid": "hzpuh"
     },
     {
       "kind": "section-head",
-      "id": "faq",
-      "title": "Questions and answers",
-      "bid": "q0006"
+      "id": "yours",
+      "title": "The starter stays yours",
+      "bid": "pfvrz"
     },
     {
-      "kind": "section-faq",
-      "title": "Questions and answers",
-      "items": [
-        {
-          "q": "What is a native element?",
-          "a": "An element that comes with the core at the first start and serves the core and the other elements: sign-in, data, the stores, settings, payments."
-        },
-        {
-          "q": "Can a native element be removed?",
-          "a": "Sign-in, data and root can be replaced but not deleted."
-        },
-        {
-          "q": "Does a native element sell work to others?",
-          "a": "No. A native element has no working process and no payments of its own."
-        }
-      ],
-      "bid": "q0007"
+      "kind": "text-p",
+      "text": "A bought starter is yours. Push it to your own GitHub repository and keep growing it.",
+      "bid": "zuh4h"
+    },
+    {
+      "kind": "text-p",
+      "text": "Once you have improved it a lot, you can sell it through the Fractera marketplace.",
+      "bid": "b1uvc"
     }
   ]
 }
