@@ -79,6 +79,10 @@ const PUBLIC_API_PREFIXES = [
   "/api/auth/callback",
   // 285-3: данные оболочки проекта (шапка и подвал) для всех служб узла — публичны, как и сами шапка и подвал.
   "/api/shell",
+  // Market 7-1/7-3: «who is signed in» answers a guest `{ userId: null, roles: [] }` in its handler; the gate cut it first with 401 —
+  // two red console lines for every visitor of the public page (seen live 2026-11-28; the owner at the machine passes, so localhost hid it).
+  // It reads the session itself and gives nothing a guest does not already have.
+  "/api/me",
   "/api/catalogue",   // догрузка витрины: те же товары, что в статическом HTML
   "/api/i18n",        // строки интерфейса — они и так в разметке
   // 356-2: отчёт о задаче для окна предпросмотра — без входа; дверь сама отвечает только на этой машине (127.0.0.1 / localhost).
