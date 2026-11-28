@@ -1,0 +1,18 @@
+# Step 7 — The public start page of the marketplace (core step 862-16)
+
+Serves: S-03
+Stage: 1
+
+## Asked
+
+The architect, Telegram 608 (2026-11-28), verbatim: «у каждого пользователя есть элемент маркет, а архитектура предполагает во всех случаях какую-то стартовую страницу в публичном пространстве стоило бы наверное сделать эту страницу более-менее осмысленный в стандартном дизайне но с какими-то правильными текстами».
+Telegram 610, verbatim: «можно любой элемент сделать при помощи агентах, но это потребует профессиональной экспертизы время и деньги. Маркет Fractera это не решение про готовые кейсы но это инструменты очень хорошо подходящий для того чтобы запустить MVP буквально сразу увидеть что нужно развивать от чего стоит отказаться. Также можно сказать что Fractera не предоставляет никаких гарантий обязательств того что представленный стартер закрывает решение во всех случаях следует исследовать стартовую страницу, и отчёт который идёт в комплекте. Также можно сказать что полученные стартеры остаются у вас вы его можете отправить свой репозиторий GitHub продолжить развитие. В определённый момент когда это стартер будет улучшен значительно … вы также можете его продать через маркетплейс Fractera».
+The core's main agent: five blocks, Russian first — (1) hero «Маркетплейс вашего проекта» + «Готовые стартеры для задач, которые ваш проект ещё не умеет решать: запустите MVP сегодня, а не через месяц», buttons «Мои рекомендации» (sign-in → the recommendations page) and «Предложить свой элемент» (a short explanation of the author road; moderated by hand, the wire deferred); (2) why a starter, not from scratch; (3) how it works in 4 steps; (4) honestly about guarantees; (5) yours for good — GitHub, then sell through the marketplace. noindex (the one indexed storefront is the store on fractera.ai); static; standard design; fix the two 401s; «Native elements are never sold» nowhere. Seen by the core on market.fractera.ai: the template's hero and that sentence, 2× 401 in the console.
+
+**Found:** the two 401 are the door «who is signed in» `/api/me` answering a guest 401 on the public address (on localhost the owner at the keyboard gets 200); the page is `bare` — only the template widget `widget-static-native-landing` draws it, its sections are not shown.
+
+**Substeps:**
+1. Pass: main — `/api/me` answers a guest 200 `{ userId: null, roles: [] }` (every caller reads a guest the same way); `meta.noindex` in the page tree → `robots: noindex` and no hreflang, the page out of the sitemap; the home page data rebuilt with the existing sections (hero, head, text, warning card) in the standard design, not `bare`, the template widget out of the sequence; the child page «Как предложить свой элемент» (`_pages/authors`); words in Russian drafted from the architect's own; en as the base copy. Check: prebuild RC=0; `check:seo` and the tree guards; curl of the local page shows `noindex`.
+2. Pass: texts — every word of the two pages through `humanizer`, compact; the en translation. Check: prebuild RC=0, `check:dev-docs`.
+3. Live after the core's deploy: eyes at 1440 and 390 on `/ru` — five blocks, no console errors on the public address, `<meta name="robots" content="noindex…">`, «Мои рекомендации» → sign-in → the recommendations page.
+4. Close: commit, reply-core, report.

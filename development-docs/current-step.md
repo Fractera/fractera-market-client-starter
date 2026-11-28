@@ -1,22 +1,20 @@
 # Current step
 
-**Active step:** 6 — the paid purchase in the cart (`steps-new/6-the-paid-purchase.md`, core step 862-15).
-State: planned 2026-11-27 ~23:40; going on without waiting (the core's word).
+**Active step:** 7 — the public start page (`steps-new/7-the-public-start-page.md`, core step 862-16).
+State: planned 2026-11-28 ~15:40; going on without waiting (the core's word). Step 6 stays open: 6-3 (the live paid path) waits for the store's priced test starter — it comes first when the slug arrives (`steps-new/6-the-paid-purchase.md`).
 
-Serves: S-05, S-06, S-07, R-01, R-04, R-05
+Serves: S-03
 Stage: 1
 
-**Last change:** step 5 closed (`steps-done/5.md`): live 401 / 200, eyes on `?open=` and `?element=`.
+**Last change:** 6-1, 6-2 deployed (65bc639); the reconcile of ord-be889e7cd713d1165e6e3d20 live.
 
-**Now:** 6-1, 6-2 coded (65bc639); prebuild RC=0; market test and summary test OK. The core's live orders read (2 orders, both paid): after the deploy the reconcile adds the probe order ord-be889e7cd713d1165e6e3d20 (image starter, by «build») to «Купленные» — paid in the core, missing here (the old backlog line).
-
-**Live (23:48 UTC, 65bc639 deployed):** the reconcile added ord-be889e7cd713d1165e6e3d20 («Тестовая картинка», v0.1.0) to «Купленные» — «Куплен» «Не установлен» with the page's own hint and «Установить»; summary `bought: { all: 2, notInstalled: 1 }`. The cart's eyes with a line are not possible yet: the store holds only the two test starters, both bought (four other searches returned nothing); no made-up line put into the real cart.
-
-**Next action:** the core brings the priced test starter's slug → it into the cart → eyes on the consent and «Оплатить» at 1440 / 390 (disabled until ticked) → the live paid path (6-3).
+**Next action:** 7-1 (main): `/api/me` for a guest, `meta.noindex`, the page data; then `npm run pass -- texts` for 7-2.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
 ## The person's latest decisions (verbatim)
+
+- 2026-11-28, the architect (Telegram 608, 610): the public start page — verbatim in `steps-new/7-the-public-start-page.md`.
 
 - 2026-11-27 23:18 UTC, the architect (Telegram 1737): «Следом после этого создавай как мы с тобой договорились покупку элементов. Для этого один из элементов сделать платным например один доллар попробуем его покупить через тестовой аккаунт Страйп».
 
