@@ -21,17 +21,17 @@
     {
       "kind": "section-head",
       "id": "why",
-      "title": "Why a starter, not from scratch",
+      "title": "Why a starter instead of building from scratch",
       "bid": "otkdb"
     },
     {
       "kind": "text-p",
-      "text": "Agents can build any element from scratch. It takes professional expertise, time and money.",
+      "text": "Agents can build any element from scratch, but that takes professional expertise, time and money.",
       "bid": "jpz4a"
     },
     {
       "kind": "text-p",
-      "text": "A starter is different. It is not a ready solution for your case but a tool that gives a working MVP at once. You quickly see what is worth growing and what to drop.",
+      "text": "A starter lets you launch an MVP right away and see what is worth developing and what to drop.",
       "bid": "xyg6w"
     },
     {
@@ -44,27 +44,27 @@
       "kind": "text-list",
       "ordered": true,
       "items": [
-        "The project's agent notices a task no element solves.",
-        "The Fractera store proposes a starter and says why it fits.",
-        "You decide: nothing is bought without your payment window.",
-        "The core installs the starter as a new element that serves every element of the project."
+        "The project's agent finds a task that none of your elements solves.",
+        "The Fractera store proposes a starter and explains why it fits.",
+        "You decide whether to take it. A purchase goes only through your own payment window.",
+        "The core installs the starter as a new element, and every element of the project can use it."
       ],
       "bid": "eu9v9"
     },
     {
       "kind": "section-head",
       "id": "honest",
-      "title": "Honestly about guarantees",
+      "title": "About guarantees",
       "bid": "yl9z5"
     },
     {
       "kind": "text-p",
-      "text": "Starters are tools for a fast start, not ready solutions for every case.",
+      "text": "Fractera Market sells tools for a fast start, not ready-made cases.",
       "bid": "fef6t"
     },
     {
       "kind": "text-p",
-      "text": "Fractera does not guarantee that a starter closes your task completely. Before buying, study the starter's page and the check report that comes with it.",
+      "text": "Fractera does not guarantee that a starter will solve your task in every case. Before buying, study the starter's page and the report that comes with it.",
       "bid": "hzpuh"
     },
     {
@@ -75,12 +75,12 @@
     },
     {
       "kind": "text-p",
-      "text": "A bought starter is yours. Push it to your own GitHub repository and keep growing it.",
+      "text": "Push the starter you bought to your own GitHub repository and keep developing it.",
       "bid": "zuh4h"
     },
     {
       "kind": "text-p",
-      "text": "Once you have improved it a lot, you can sell it through the Fractera marketplace.",
+      "text": "Once it is noticeably better, you can sell it through the Fractera marketplace.",
       "bid": "b1uvc"
     }
   ]

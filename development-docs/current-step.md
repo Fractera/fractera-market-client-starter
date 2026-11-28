@@ -10,7 +10,9 @@ Stage: 1
 
 **Now:** 7-1 coded (155f2da, main): `/api/me` 200 for a guest, `meta.noindex` (robots, no hreflang, out of the sitemap), the home page data in five sections (not `bare`), the page `_pages/authors`; the words are drafts from the architect's own.
 
-**Next action:** 7-2 in the texts pass (`npm run pass -- texts`): every word of `(publicLayer)/_data/{ru,en}.json` and `_pages/authors/{ru,en}.json` through `humanizer`, compact, every claim as the architect stated it; then prebuild, commit, reply-core with the step's state; the eyes of 7-3 after the core's deploy.
+**Done:** 7-2 (texts pass, 2026-11-28): the words of the home page and `_pages/authors` in ru and en through `humanizer`.
+
+**Next action:** 7-3 — the eyes at 1440 and 390 on the public `/ru` after the core's deploy; then 7-4 close.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 

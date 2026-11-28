@@ -1,10 +1,10 @@
 {
   "title": "How to offer your element",
-  "description": "The author's road in the Fractera marketplace: how your element becomes a starter for other projects.",
+  "description": "How an element of your project becomes a starter in the Fractera marketplace.",
   "body": [
     {
       "kind": "text-p",
-      "text": "An element you built and grew a lot in your project can become a starter for other projects.",
+      "text": "An element you built and noticeably improved in your own project can become a starter for other projects.",
       "bid": "p96x8"
     },
     {
@@ -12,14 +12,14 @@
       "items": [
         "You offer an element from your project.",
         "Fractera checks it by hand and writes a check report.",
-        "After the check the starter appears in the store on fractera.ai.",
-        "The profit of every sale is split in half: one half goes to the author."
+        "The starter appears in the store on fractera.ai.",
+        "Half of every sale goes to the author."
       ],
       "bid": "o86hg"
     },
     {
       "kind": "text-p",
-      "text": "The «Offer» button inside the project is still being built. For now Fractera adds starters one by one, each checked by hand.",
+      "text": "The «Offer» button inside the project is still in progress. For now Fractera adds starters one at a time, each checked by hand.",
       "bid": "nni1u"
     }
   ]
