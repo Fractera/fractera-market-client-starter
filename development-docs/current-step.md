@@ -12,7 +12,7 @@ Stage: 1
 
 **Done:** 7-2 (texts pass, 2026-11-28, 9a9abe2): the words of the home page and `_pages/authors` in ru and en through `humanizer`.
 
-**Next action:** 7-3 found live (2026-11-28 15:50 UTC, market.throughsongs.com): the five sections at 1440 and 390, `noindex, follow`, the old «never sold» line gone, «Мои рекомендации» → the access window with sign-in; but `/api/me` still 401 for a guest — the gate in `proxy.ts` cut it before the handler (localhost hid it: the owner at the machine passes). Fix 7-1 reopened: `/api/me` named in `PUBLIC_API_PREFIXES`; prebuild, commit, then the core's deploy and a second live look. Note: market.fractera.ai is another server running the released template — not this element's build.
+**Next action:** 7-3 found live (2026-11-28 15:50 UTC, market.throughsongs.com): the five sections at 1440 and 390, `noindex, follow`, the old «never sold» line gone, «Мои рекомендации» → the access window with sign-in; but `/api/me` still 401 for a guest — the gate in `proxy.ts` cut it before the handler (localhost hid it: the owner at the machine passes). Fix 7-1 reopened: `/api/me` named in `PUBLIC_API_PREFIXES` — prebuild RC=0, commit ba51e06; waiting for the core's deploy and a second live look. Note: market.fractera.ai is another server running the released template — not this element's build.
 
 **Queue:** empty. Open in the quiz: Q-01, Q-02 (defaults taken in step 2).
 
