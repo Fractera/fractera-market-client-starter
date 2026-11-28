@@ -10,7 +10,7 @@ Stage: 1
 
 **Now:** 7-1 coded (155f2da, main): `/api/me` 200 for a guest, `meta.noindex` (robots, no hreflang, out of the sitemap), the home page data in five sections (not `bare`), the page `_pages/authors`; the words are drafts from the architect's own.
 
-**Done:** 7-2 (texts pass, 2026-11-28): the words of the home page and `_pages/authors` in ru and en through `humanizer`.
+**Done:** 7-2 (texts pass, 2026-11-28, 9a9abe2): the words of the home page and `_pages/authors` in ru and en through `humanizer`.
 
 **Next action:** 7-3 — the eyes at 1440 and 390 on the public `/ru` after the core's deploy; then 7-4 close.
 
